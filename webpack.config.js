@@ -20,6 +20,21 @@ module.exports = {
                 use: {
                         loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.css/,
+                exclude: /(node_modules|bower_components)/,
+                use: [ 'style-loader', 'css-loader' ]
+            },
+            {
+                test: /\.(png|jpg|gif|mp3)$/,
+                exclude: /(node_modules|bower_components)/,
+                use: [
+                {
+                    loader: 'file-loader',
+                    options: {}  
+                }
+                ]
             }
         ]
     }

@@ -1,0 +1,19 @@
+.spaceshipWindow {
+    width: 630px;
+    height: 470px;
+    z-index: 200;
+    border: 10px solid lightgray;
+    border-radius: 150px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+
+.thrustInfo {
+    z-index: 5;
+    /* border: 10px solid lightgray; */
+    position: absolute;
+    top: 400px;
+    left: 40px;
+    color: white;
+}
