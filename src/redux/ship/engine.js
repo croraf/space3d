@@ -11,8 +11,12 @@ const engine = {
 };
 
 const changeThrust = (direction) => {
-    if (direction > 0 && engine.cruise.loading + 1 === 100) engine.cruise = {loading: 100, on: true};
-    else engine.cruise = {loading: direction > 0 ? engine.cruise.loading + 1 : engine.cruise.loading - 1, on: false};
+    if (direction > 0 && engine.cruise.loading + 1 === 100) {
+        engine.cruise = {loading: 100, on: true};
+    }
+    else {
+        engine.cruise = {loading: direction > 0 ? engine.cruise.loading + 1 : engine.cruise.loading - 1, on: false};
+    }
 };
 
 const stopThrust = () => {
@@ -20,7 +24,7 @@ const stopThrust = () => {
 };
 
 const enterPipeline = (pipeline) => {
-    
+
     stopThrust();
     engine.pipeline = pipeline;
 };
@@ -28,5 +32,6 @@ const enterPipeline = (pipeline) => {
 const exitPipeline = () => {
     engine.pipeline = null;
 }
+
 
 export {engine, changeThrust, stopThrust, enterPipeline, exitPipeline};

@@ -1,7 +1,7 @@
 import { BoxGeometry, MeshBasicMaterial, Mesh, LineBasicMaterial, 
     Geometry, Vector3, Line, CircleGeometry, SphereGeometry, 
     TorusGeometry, DoubleSide,
-    TubeGeometry, LineCurve3} from 'three';
+    TubeGeometry, LineCurve3, MeshPhongMaterial} from 'three';
 
 const getCube = (size={x:1, y:1, z:1}, position={x:0, y:0, z:0}) => {
 
@@ -43,9 +43,23 @@ const getCircle = (position=new Vector3(0,0,0)) => {
     return circle;
 }
 
-const getSphere = (position, radius, slices, color=0xFFFFFF, wireframe=false) => {
+const getSphere = (position, radius, slices, color=0xFFFFFF, texture) => {
     const geometry = new SphereGeometry( radius, slices, slices );
-    const material = new MeshBasicMaterial( { color: color, wireframe } );
+
+    let material;
+
+    if (texture) {
+
+        console.log('sun');
+        material = new MeshBasicMaterial( {
+            map: texture,
+            overdraw: 0.5
+        } );
+    } else {
+        material = new MeshBasicMaterial( { color: color } );
+
+    }
+
     const sphere = new Mesh( geometry, material );
 
     sphere.translateOnAxis(position, 1); 

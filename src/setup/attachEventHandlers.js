@@ -1,7 +1,7 @@
 
 import {canvasElement} from './webGLsetup';
 
-import {weapons} from '../redux/ship/weapons';
+import {weapons, fireRocket} from '../redux/ship/weapons';
 
 const keysActive = {};
 const mouseActive = {left: false, right: false};
@@ -37,7 +37,7 @@ const mouseDownHandler = (event) => {
         mouseActive.left = true;
         weapons.turret = true;
     } else if (event.which === 3) {
-        fireRocket(true);
+        fireRocket();
     }
 }
 
@@ -47,7 +47,6 @@ const mouseUpHandler = (event) => {
         mouseActive.left = false;
         weapons.turret = false;
     } else if (event.which === 3) {
-        /* fireRocket(false); */
     }
 }
 
@@ -59,6 +58,7 @@ const attachHandlers = () => {
     document.addEventListener('mousemove', mouseMoveHandler, false);
     document.addEventListener('mousedown', mouseDownHandler, false);
     document.addEventListener('mouseup', mouseUpHandler, false);
+    document.addEventListener('contextmenu', event => event.preventDefault());
 }
 
 export {attachHandlers, keysActive, viewTarget, mouseActive};
