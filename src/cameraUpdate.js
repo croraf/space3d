@@ -3,7 +3,7 @@ import {Vector3} from 'three';
 
 import {keysActive, viewTarget, mouseActive} from './setup/attachEventHandlers';
 
-import {store} from './redux/store';
+import {engine} from './redux/ship/engine';
 
 const speedBase = 0.09;
 const rotationSpeedBase = 1/180 * Math.PI;
@@ -72,7 +72,7 @@ const positionUpdateThrust = (camera) => {
 const positionUpdatePipeline = (camera) => {
 
     camera.translateOnAxis(new Vector3(0,0,-1), speedBase*4);
-    camera.lookAt(store.getState().pipeline.children[1].getWorldPosition());
+    camera.lookAt(engine.pipeline.children[1].getWorldPosition());
 
 }
 
@@ -100,9 +100,9 @@ const cameraUpdate = (camera) => {
     globalCounter = globalCounter % 120;
 
 
-    if (store.getState().pipeline) {
+    if (engine.pipeline) {
         positionUpdatePipeline(camera);
-    } else if (store.getState().thrust.on) {
+    } else if (engine.cruise.on) {
         positionUpdateThrust(camera);
         viewTargetUpdate(camera);
     } else {

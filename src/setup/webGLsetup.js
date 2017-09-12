@@ -2,14 +2,10 @@
 
 import { PerspectiveCamera, WebGLRenderer} from 'three';
 
-
-import {store} from '../redux/store';
-
 import './mystyle.css';
 
+
 const camera = new PerspectiveCamera( 75, 4 / 3, 0.1, 1000 );
-
-
 
 const renderer = new WebGLRenderer({antialias: true});
 

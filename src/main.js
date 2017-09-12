@@ -3,18 +3,16 @@ import {camera, renderer, container} from './setup/webGLsetup';
 
 import {createScene} from './setup/createScene';
 
-import './redux/store';
 
 import {getCube, getSphere, getTube} from './objects/objectCreators';
 import {Vector3} from 'three';
 
-import {attachKeysHandlers, attachMouseHandlers} from './setup/attachEventHandlers';
+import {attachHandlers} from './setup/attachEventHandlers';
 
 
 import {getPipeline} from './objects/complexObjects';
 
-attachKeysHandlers(camera);
-attachMouseHandlers();
+attachHandlers();
 
 const scene = createScene();
 
@@ -56,7 +54,7 @@ import {createDashboard} from './dashboard';
 
 import {cameraUpdate} from './cameraUpdate';
 import {checkPipelines} from './checkPipelines';
-import {dashboardUpdate} from './dashboardUpdate';
+import {dashboardUpdate} from './dashboardUpdate';  
 import {firingUpdate} from './firingUpdate';
 
 
@@ -65,9 +63,9 @@ const dashboard = createDashboard(container);
 function animate() {
     requestAnimationFrame( animate );
 
-    checkPipelines(camera, [pipeline1, pipeline2]);
-    cameraUpdate(camera);
-    dashboardUpdate(dashboard);
+    checkPipelines(camera, [pipeline1, pipeline2]); 
+    cameraUpdate(camera); 
+    dashboardUpdate(dashboard); 
     /* logicUpdate(); */ 
     firingUpdate(scene, camera);
  

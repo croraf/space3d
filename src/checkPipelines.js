@@ -1,8 +1,6 @@
 import {Vector3} from 'three';
 
-import {enterPipeline, exitPipeline, stopThrust} from './redux/ship/actions';
-
-import {store} from './redux/store';
+import {engine, enterPipeline, exitPipeline, stopThrust} from './redux/ship/engine';
 
 import {keysActive} from './setup/attachEventHandlers';
 
@@ -18,7 +16,7 @@ const drawTube = (scene, camera) => {
 
 const checkPipelines = (camera, pipelines) => {
 
-    if (store.getState().pipeline === null) {
+    if (engine.pipeline === null) {
 
         // check if at pipeline entrance
         pipelines.forEach((pipeline) => {
@@ -32,7 +30,6 @@ const checkPipelines = (camera, pipelines) => {
                 camera.position.y = entrance.y;
                 camera.position.z = entrance.z;
 
-                stopThrust();
                 enterPipeline(pipeline);
                 camera.add(tube1);
                 /* camera.zoom = 0.1; */
@@ -40,7 +37,7 @@ const checkPipelines = (camera, pipelines) => {
         });
     } else {
 
-        const activePipeline = store.getState().pipeline;
+        const activePipeline = engine.pipeline;
         
         /* if (store.getState().pipeline && count%120 === 0) drawTube(scene, camera);  */
         // check if at pipeline exit or escape key pressed

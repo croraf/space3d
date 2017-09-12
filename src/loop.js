@@ -1,8 +1,0 @@
-const animate = () => {
-
-
-
-}
-
-
-export {animate};

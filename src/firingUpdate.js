@@ -1,6 +1,8 @@
-import {store} from './redux/store';
+
 import {getSphere} from './objects/objectCreators';
 import {Vector3} from 'three';
+
+import {weapons} from './redux/ship/weapons';
 
 let count = 0;
 
@@ -30,10 +32,8 @@ const firingUpdate = (scene, camera) => {
     count++;
     count = count % 120;
     
-    if (store.getState().firing && count%10 === 0) animateFire(scene, camera);
-    
-    /* scene.children[1].rotation.x += 0.01;
-    scene.children[1].rotation.y += 0.01; */
+    if (weapons.turret && count%10 === 0) animateFire(scene, camera);
+
 };
 
 export {firingUpdate};
