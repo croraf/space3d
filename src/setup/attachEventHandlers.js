@@ -1,7 +1,7 @@
-/* import {keysActive} from '../userInputHandlers'; */
+
 import {canvasElement} from './webGLsetup';
 
-import {fire} from '../redux/ship/actions';
+import {fire, fireRocket} from '../redux/ship/actions';
 
 const keysActive = {};
 const mouseActive = {left: false, right: false};
@@ -38,15 +38,23 @@ const mouseMoveHandler = (event) => {
 }
 
 const mouseDownHandler = (event) => {
-    console.log(event);
-    mouseActive.left = true;
-    fire(true);
+    /* console.log(event); */
+    if (event.which === 1) {
+        mouseActive.left = true;
+        fire(true);
+    } else if (event.which === 3) {
+        fireRocket(true);
+    }
 }
 
 const mouseUpHandler = (event) => {
-    console.log(event);
-    mouseActive.left = false;
-    fire(false);
+    /* console.log(event); */
+    if (event.which === 1) {
+        mouseActive.left = false;
+        fire(false);
+    } else if (event.which === 3) {
+        fireRocket(false);
+    }
 }
 
 const attachMouseHandlers = () => {

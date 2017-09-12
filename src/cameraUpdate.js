@@ -3,31 +3,27 @@ import {Vector3} from 'three';
 
 import {keysActive, viewTarget, mouseActive} from './setup/attachEventHandlers';
 
-import {beep} from './utils/sounds';
-
 import {store} from './redux/store';
 
-const speedBase = 0.2;
+const speedBase = 0.09;
 const rotationSpeedBase = 1/180 * Math.PI;
 
-const positionUpdate = (camera) => {
-
-    const speed = speedBase * (store.getState().thrust === 100 ? 2 : 1);
+const positionUpdateCruise = (camera) => {
 
     Object.keys(keysActive).forEach(keyCode => {
 
         switch (keyCode) {
             case '65': /* a */
-                camera.translateOnAxis(new Vector3(0,0,-1).cross(new Vector3(0,1,0)), - speed);
+                camera.translateOnAxis(new Vector3(0,0,-1).cross(new Vector3(0,1,0)), - speedBase);
                 break;
             case '68': /* d */
-                camera.translateOnAxis(new Vector3(0,0,-1).cross(new Vector3(0,1,0)), speed);
+                camera.translateOnAxis(new Vector3(0,0,-1).cross(new Vector3(0,1,0)), speedBase);
                 break;
             case '87': /* w */
-                camera.translateOnAxis(new Vector3(0,0,-1), speed);
+                camera.translateOnAxis(new Vector3(0,0,-1), speedBase*1.2);
                 break;
             case '83':/* s */
-                camera.translateOnAxis(new Vector3(0,0,-1), -speed);
+                camera.translateOnAxis(new Vector3(0,0,-1), - speedBase*0.3);
                 break;
             case '32':
                 // SPACE, restart
@@ -35,16 +31,50 @@ const positionUpdate = (camera) => {
                 camera.lookAt({x: 0, y: 0, z: 0}); 
                 break;
             default:
-                return;
+                
+                console.log('----------------------------key pressed', keyCode, typeof keyCode);
                 break;
         }
 
         
-        console.log('----------------------------key pressed', keyCode, typeof keyCode);
         /*console.log('position:', camera.position);
         console.log('direction:',camera.getWorldDirection()); */
     });
 };
+
+const positionUpdateThrust = (camera) => {
+
+    const speed = speedBase * 2;
+    
+    camera.translateOnAxis(new Vector3(0,0,-1), speed);
+
+    Object.keys(keysActive).forEach(keyCode => {
+
+        switch (keyCode) {
+            case '65': /* a */
+                camera.translateOnAxis(new Vector3(0,0,-1).cross(new Vector3(0,1,0)), - speedBase);
+                break;
+            case '68': /* d */
+                camera.translateOnAxis(new Vector3(0,0,-1).cross(new Vector3(0,1,0)), speedBase);
+                break;
+            case '87': /* w */
+                break;
+            case '83':/* s */
+                break;
+            default:
+                
+                console.log('----------------------------key pressed', keyCode, typeof keyCode);
+                break;
+        }
+    });
+}
+
+const positionUpdatePipeline = (camera) => {
+
+    camera.translateOnAxis(new Vector3(0,0,-1), speedBase*4);
+    camera.lookAt(store.getState().pipeline.children[1].getWorldPosition());
+
+}
 
 const viewTargetUpdate = (camera) => {
 
@@ -61,13 +91,6 @@ const viewTargetUpdate = (camera) => {
 }
 
 
-const shootingUpdate = () => {
-
-    if (mouseActive.left === true) beep();
-}
-
-
-
 
 let globalCounter = 0;
 
@@ -75,12 +98,18 @@ const cameraUpdate = (camera) => {
 
     globalCounter++;
     globalCounter = globalCounter % 120;
-    
-    positionUpdate(camera);
 
-    viewTargetUpdate(camera);
+
+    if (store.getState().pipeline) {
+        positionUpdatePipeline(camera);
+    } else if (store.getState().thrust.on) {
+        positionUpdateThrust(camera);
+        viewTargetUpdate(camera);
+    } else {
+        positionUpdateCruise(camera);
+        viewTargetUpdate(camera);
+    }
     
-    if (globalCounter === 0) shootingUpdate();
 };
 
 export {cameraUpdate};

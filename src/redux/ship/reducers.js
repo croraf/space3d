@@ -1,9 +1,12 @@
 
 
-const thrustReducer = (state=0, action) => {
+const thrustReducer = (state={loading: 0, on: false}, action) => {
     switch (action.type) {
         case 'CHANGE_THRUST':
-            return action.direction > 0 ? (state < 100 ? state+1 : state) : (state > 0 ? state-1 : state);
+            if (action.direction > 0 && state.loading + 1 === 100) return {loading: 100, on: true};
+            else return {loading: action.direction > 0 ? state.loading + 1 : state.loading - 1, on: false};
+        case 'STOP_THRUST':
+            return {loading: 0, on: false};
         default:
             return state;
             break;
@@ -20,4 +23,17 @@ const firingReducer = (state=false, action) => {
     }
 }
 
-export {thrustReducer, firingReducer};
+const pipelineReducer = (state=null, action) => {
+    switch (action.type) {
+        case 'ENTER_PIPELINE':
+            console.log('ENTER_PIPELINE:', action.pipeline);
+            return action.pipeline;
+        case 'EXIT_PIPELINE':
+            return null;
+        default:
+            return state;
+            break;
+    }
+}
+
+export {thrustReducer, firingReducer, pipelineReducer};

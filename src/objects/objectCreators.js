@@ -1,9 +1,12 @@
-import { BoxGeometry, MeshBasicMaterial, Mesh, LineBasicMaterial, Geometry, Vector3, Line, CircleGeometry, SphereGeometry, TorusGeometry, MeshLambertMaterial, DoubleSide } from 'three';
+import { BoxGeometry, MeshBasicMaterial, Mesh, LineBasicMaterial, 
+    Geometry, Vector3, Line, CircleGeometry, SphereGeometry, 
+    TorusGeometry, DoubleSide,
+    TubeGeometry, LineCurve3} from 'three';
 
 const getCube = (size={x:1, y:1, z:1}, position={x:0, y:0, z:0}) => {
 
     var geometry = new BoxGeometry( size.x, size.y, size.z );
-    var material = new MeshBasicMaterial( { color: 0x00ff00 } );
+    var material = new MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );
     var cube = new Mesh( geometry, material );
 
     cube.translateOnAxis(new Vector3(position.x, position.y, position.z), 1); 
@@ -28,21 +31,21 @@ const getLine = (z) => {
     return line;
 };
 
-const getCircle = () => {
-    const geometry = new CircleGeometry( 10, 8 );
+const getCircle = (position=new Vector3(0,0,0)) => {
+    const geometry = new CircleGeometry( 9, 8 );
     const material = new MeshBasicMaterial( { color: 0xcccccc, transparent: true, opacity: 0.3 } );
     material.side = DoubleSide;
 
     const circle = new Mesh( geometry, material );
 
-    circle.translateOnAxis(new Vector3(0, 0, 0), 1);
+    circle.translateOnAxis(position, 1);
     
     return circle;
 }
 
-const getSphere = (position, radius) => {
-    const geometry = new SphereGeometry( radius, 32, 32 );
-    const material = new MeshBasicMaterial( { color: 0xFFDD00 } );
+const getSphere = (position, radius, slices, color=0xFFFFFF, wireframe=false) => {
+    const geometry = new SphereGeometry( radius, slices, slices );
+    const material = new MeshBasicMaterial( { color: color, wireframe } );
     const sphere = new Mesh( geometry, material );
 
     sphere.translateOnAxis(position, 1); 
@@ -50,9 +53,9 @@ const getSphere = (position, radius) => {
     return sphere;
 }
 
-const getTorus = (position) => {
-    var geometry = new TorusGeometry( 10, 1, 8, 16 );
-    var material = new MeshBasicMaterial( { color: 0x0000cc } );
+const getTorus = (position=new Vector3(0,0,0)) => {
+    var geometry = new TorusGeometry( 10, 1, 8, 8 );
+    var material = new MeshBasicMaterial( { color: 0x0000cc, wireframe: true } );
     var torus = new Mesh( geometry, material );
     
     torus.translateOnAxis(new Vector3(position.x, position.y, position.z), 1);
@@ -70,4 +73,17 @@ const getBullet = (position) => {
     return sphere;
 }
 
-export {getCube, getLine, getCircle, getSphere, getTorus};
+const getTube = (position1, position2) => {
+    const path = new LineCurve3(position1, position2);
+    var geometry = new TubeGeometry( path, 3, 4, 24, false );
+    var material = new MeshBasicMaterial( { color: 0x00ffff, transparent: true, opacity: 0.3  } );
+    material.side = DoubleSide;
+
+    var tube = new Mesh( geometry, material );
+
+    /* sphere.translateOnAxis(new Vector3(position.x, position.y, position.z), 1); */ 
+    
+    return tube;
+}
+
+export {getCube, getLine, getCircle, getSphere, getTorus, getTube};

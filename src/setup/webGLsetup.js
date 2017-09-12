@@ -1,6 +1,7 @@
 // Setups camera, scene and renderer. Mounts renderer into HTML DOM.
 
-import { PerspectiveCamera, WebGLRenderer, Scene } from 'three';
+import { PerspectiveCamera, WebGLRenderer} from 'three';
+
 
 import {store} from '../redux/store';
 
@@ -8,7 +9,7 @@ import './mystyle.css';
 
 const camera = new PerspectiveCamera( 75, 4 / 3, 0.1, 1000 );
 
-const scene = new Scene();
+
 
 const renderer = new WebGLRenderer({antialias: true});
 
@@ -23,4 +24,9 @@ spaceshipWindow.setAttribute('class', 'spaceshipWindow');
 
 container.appendChild( spaceshipWindow );
 
-export {camera, renderer, scene, container, canvasElement};
+/* const audio_file = new Audio('engine3.mp3');
+audio_file.play();
+audio_file.loop = true; */
+/* container.appendChild(audio_file); */
+
+export {camera, renderer, container, canvasElement};
