@@ -9,25 +9,26 @@ import {checkCollisionSpheres} from './utils/checkCollision';
 let count = 0;
 
 let returnColor = setTimeout(() => {}, 10000);
-const animateHit = (target) => {
+const animateHit = (target, bulletType) => {
 
     /* const color = target.material.color; */
 
     clearTimeout(returnColor);
-    returnColor = setTimeout(() => {target.material.emissiveIntensity = 0;}, 1000);
+    returnColor = setTimeout(() => {target.material.emissiveIntensity = 0;}, bulletType === 'rocket' ? 1000 : 100);
     
     /* color.set('red'); */
     target.material.emissive = new Color('red');
-    target.material.emissiveIntensity = 0.2;
+    bulletType === 'rocket' ? target.material.emissiveIntensity = 0.4 : target.material.emissiveIntensity = 0.2;
 }
 
-const moveBullet = (scene, bulletSphere, bulletDirection, i) => {
+const moveBullet = (scene, bulletSphere, bulletDirection, i, isRocket) => {
 
     bulletSphere.translateOnAxis(bulletDirection, 1);
 
     if (checkCollisionSpheres(bulletSphere, scene.getObjectByName('target'))){
 
-        animateHit(scene.getObjectByName('target'));
+        console.log(isRocket);
+        animateHit(scene.getObjectByName('target'), bulletSphere.bulletType);
         scene.remove(bulletSphere);
     } else {
         
@@ -54,6 +55,7 @@ const animateRocket = (scene, camera) => {
     const bulletSphere = getSphere(camera.getWorldPosition().addScaledVector(bulletDirection, 5), 0.4, 8, 'red');
     
     bulletSphere.nonIntersectable = true;
+    bulletSphere.bulletType = 'rocket';
     scene.add(bulletSphere);
 
     moveBullet(scene, bulletSphere, bulletDirection.multiplyScalar(1.2), 100);
