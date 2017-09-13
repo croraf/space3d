@@ -11,6 +11,8 @@ const getCube = (size={x:1, y:1, z:1}, position={x:0, y:0, z:0}) => {
 
     cube.translateOnAxis(new Vector3(position.x, position.y, position.z), 1); 
 
+    cube.intersectable = true;
+    
     return cube;
 
 };

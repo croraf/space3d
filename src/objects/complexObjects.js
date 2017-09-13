@@ -21,6 +21,9 @@ const getPipeline = (entrance1, entrance2) => {
     pipeline.add(getPipelineEntrance(entrance1, entrance2));
     pipeline.add(getPipelineEntrance(entrance2, entrance1));
 
+    pipeline.children[0].name = '-entrance';
+    pipeline.children[1].name = '-exit';
+
     return pipeline;
 }
 

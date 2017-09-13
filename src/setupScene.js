@@ -7,19 +7,19 @@ import {scene} from './setup/createScene';
 const setupScene = () => {
     
     const cube1 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:10});
-    cube1.name = 'cube1';
+    cube1.name = 'box1';
     scene.add(cube1);
 
     const cube2 = getCube({x:1, y:1, z:1}, {x:10, y:0, z:20});
-    cube2.name = 'cube2';
+    cube2.name = 'box2';
     scene.add(cube2);
 
     const cube3 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:30});
-    cube3.name = 'cube3';
+    cube3.name = 'box3';
     scene.add(cube3);
 
     const cube4 = getCube({x:1, y:1, z:1}, {x:-10, y:0, z:20});
-    cube4.name = 'cube4';
+    cube4.name = 'box4';
     scene.add(cube4);
 
 

@@ -40,6 +40,8 @@ const animateFire = (scene, camera) => {
 
     const bulletDirection = camera.getWorldDirection();
     const bulletSphere = getSphere(camera.getWorldPosition().addScaledVector(bulletDirection, 5), 0.2, 8);
+
+    bulletSphere.nonIntersectable = true;
     scene.add(bulletSphere);
 
     moveBullet(scene, bulletSphere, bulletDirection, 50);
@@ -49,6 +51,8 @@ const animateRocket = (scene, camera) => {
 
     const bulletDirection = camera.getWorldDirection();
     const bulletSphere = getSphere(camera.getWorldPosition().addScaledVector(bulletDirection, 5), 0.4, 8, 'red');
+    
+    bulletSphere.nonIntersectable = true;
     scene.add(bulletSphere);
 
     moveBullet(scene, bulletSphere, bulletDirection.multiplyScalar(1.2), 100);

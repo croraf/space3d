@@ -55,7 +55,15 @@ const dashboardUpdate = (dashboard) => {
 const setSelectedElement = (intersects) => {
 
     if (intersects.length > 0) {
-        dashboard.selectedItem.innerHTML = intersects[0].object.name + ', ' + (intersects[0].distance*10).toFixed(1) + 'm';
+
+        let name = intersects[0].object.name;
+        if (!name) {
+            name = intersects[0].object.parent.name;
+            if (!name){
+                name = intersects[0].object.parent.parent.name;
+            }
+        }
+        dashboard.selectedItem.innerHTML = name + ', ' + (intersects[0].distance*10).toFixed(1) + 'm';
     } else {
         dashboard.selectedItem.innerHTML = '';
     }

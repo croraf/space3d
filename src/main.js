@@ -20,8 +20,12 @@ import {setupScene} from './setupScene';
 setupScene();
 
 const pipeline1 = getPipeline(new Vector3(20, 0, 0), new Vector3(-30, 0, -300));
-const pipeline2 = getPipeline(new Vector3(-40, 0, -170), new Vector3(-40, 0, 20));
+pipeline1.children[0].name = 'pipeline1' + pipeline1.children[0].name;
+pipeline1.children[1].name = 'pipeline1' + pipeline1.children[1].name;
 
+const pipeline2 = getPipeline(new Vector3(-40, 0, -170), new Vector3(-40, 0, 20));
+pipeline2.children[0].name = 'pipeline2' + pipeline2.children[0].name;
+pipeline2.children[1].name = 'pipeline2' + pipeline2.children[1].name;
 
 scene.add( pipeline1 );
 scene.add( pipeline2 );

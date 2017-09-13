@@ -11,19 +11,18 @@ const elementHeight = canvasElement.offsetHeight/2;
 
 const raycaster =  new Raycaster();  
 
+
 const checkMouseIntersect = (event) => {
 
     const viewX = (event.clientX - (canvasElement.offsetLeft + elementWidth)) / elementWidth;
     const viewY = (event.clientY - (canvasElement.offsetTop + elementHeight)) / elementHeight;
 
-    const mouse3D = new Vector2( viewX,   
-                                    - viewY/* ,  
-                                    0.5  */);     
+    const mouse3D = new Vector2( viewX, -viewY);     
     
                                           
     raycaster.setFromCamera( mouse3D, camera );
 
-    const intersects = raycaster.intersectObjects( scene.children /* [scene.getObjectByName('target')] */ );
+    const intersects = raycaster.intersectObjects( scene.children.filter(object => !object.nonIntersectable), true );
 
     setSelectedElement(intersects);
     
