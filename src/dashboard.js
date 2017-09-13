@@ -27,4 +27,8 @@ container.appendChild( selectedItem );
 dashboard.selectedItem = selectedItem;
 
 
+const spaceshipWindow = document.createElement('div');
+spaceshipWindow.setAttribute('class', 'spaceshipWindow'); 
+container.appendChild( spaceshipWindow );
+
 export {dashboard};

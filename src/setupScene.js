@@ -36,7 +36,7 @@ const setupScene = () => {
 
     textureLoader.load('space4.png', (texture)=>{
 
-        const planet1 = getSphere(new Vector3(-120, 100, -750), 50, 24,  0x00FFDD, texture, true);
+        const planet1 = getSphere(new Vector3(-120, 130, -750), 60, 24,  0x00FFDD, texture, true);
         planet1.name = 'London';
         scene.add( planet1 );
     }); 
@@ -66,7 +66,7 @@ const setupScene = () => {
 
     textureLoader.load('planet3.png', (texture)=>{
 
-        const planet3 = getSphere(new Vector3(-400, -120, -400), 70, 24, 0xFFDD00, texture, true);
+        const planet3 = getSphere(new Vector3(-500, -160, -400), 80, 24, 0xFFDD00, texture, true);
         planet3.name = 'Moscow';
         scene.add( planet3 );
     });

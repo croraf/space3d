@@ -15,11 +15,6 @@ renderer.setSize( 640, 480 );
 const canvasElement = renderer.domElement;
 container.appendChild( canvasElement );
 
-const spaceshipWindow = document.createElement('div');
-spaceshipWindow.setAttribute('class', 'spaceshipWindow'); 
-
-container.appendChild( spaceshipWindow );
-
 /* const audio_file = new Audio('engine3.mp3');
 audio_file.play();
 audio_file.loop = true; */

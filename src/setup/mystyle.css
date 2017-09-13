@@ -2,8 +2,8 @@
     width: 630px;
     height: 470px;
     z-index: 200;
-    border: 10px solid lightgray;
-    border-radius: 150px;
+    /* border: 10px solid lightgray;
+    border-radius: 150px; */
     position: absolute;
     top: 4px;
     left: 4px;

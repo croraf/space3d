@@ -14,7 +14,7 @@ const animateHit = (target, bulletType) => {
     /* const color = target.material.color; */
 
     clearTimeout(returnColor);
-    returnColor = setTimeout(() => {target.material.emissiveIntensity = 0;}, bulletType === 'rocket' ? 1000 : 100);
+    returnColor = setTimeout(() => {target.material.emissiveIntensity = 0;}, bulletType === 'rocket' ? 600 : 100);
     
     /* color.set('red'); */
     target.material.emissive = new Color('red');
