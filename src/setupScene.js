@@ -39,7 +39,7 @@ const setupScene = () => {
         scene.add( planet1 );
     }); 
 
-    new TextureLoader().load('sun.jpg', (texture)=>{
+    new TextureLoader().load('sun2.jpg', (texture)=>{
 
         const sun1 = getSphere(new Vector3(40, 220, -650), 120, 24, 0xFFDD00, texture);
         sun1.name = 'Omega';
