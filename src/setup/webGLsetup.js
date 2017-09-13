@@ -7,7 +7,7 @@ import './mystyle.css';
 
 const camera = new PerspectiveCamera( 75, 4 / 3, 0.1, 1000 );
 
-const renderer = new WebGLRenderer({antialias: true});
+const renderer = new WebGLRenderer({antialias: true, alpha: true});
 
 const container = document.getElementById('my_gl_container');
 renderer.setSize( 640, 480 );

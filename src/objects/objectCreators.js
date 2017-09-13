@@ -58,8 +58,7 @@ const getSphere = (position, radius, slices, color=0xFFFFFF, texture, phong) => 
         } else {
 
             material = new MeshBasicMaterial({
-                map: texture,
-                overdraw: 1
+                map: texture
             });
         }
         
@@ -81,7 +80,9 @@ const getSphere = (position, radius, slices, color=0xFFFFFF, texture, phong) => 
 
 const getTorus = (position=new Vector3(0,0,0)) => {
     var geometry = new TorusGeometry( 10, 1, 8, 8 );
-    var material = new MeshBasicMaterial( { color: 0x0000cc, wireframe: true } );
+    var material = new MeshPhongMaterial( { 
+        color: 0x0000cc, wireframe: true, specular: 0x555555, shininess: 20, emissive: 'blue', emissiveIntensity: 0.2 
+    } );
     var torus = new Mesh( geometry, material );
     
     torus.translateOnAxis(new Vector3(position.x, position.y, position.z), 1);
