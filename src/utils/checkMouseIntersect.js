@@ -1,4 +1,4 @@
-import {Raycaster, Vector3} from 'three';
+import {Raycaster, Vector3, Vector2} from 'three';
 
 import {scene} from '../setup/createScene';
 import {camera} from '../setup/webGLsetup';
@@ -16,9 +16,9 @@ const checkMouseIntersect = (event) => {
     const viewX = (event.clientX - (canvasElement.offsetLeft + elementWidth)) / elementWidth;
     const viewY = (event.clientY - (canvasElement.offsetTop + elementHeight)) / elementHeight;
 
-    const mouse3D = new Vector3( viewX,   
-                                    viewY,  
-                                    0.5 );     
+    const mouse3D = new Vector2( viewX,   
+                                    - viewY/* ,  
+                                    0.5  */);     
     
                                           
     raycaster.setFromCamera( mouse3D, camera );
