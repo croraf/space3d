@@ -1,6 +1,6 @@
 
 import {getSphere} from './objects/objectCreators';
-import {Vector3} from 'three';
+import {Vector3, Color} from 'three';
 
 import {weapons} from './redux/ship/weapons';
 
@@ -11,13 +11,14 @@ let count = 0;
 let returnColor = setTimeout(() => {}, 10000);
 const animateHit = (target) => {
 
-    const color = target.material.color;
+    /* const color = target.material.color; */
 
     clearTimeout(returnColor);
-    returnColor = setTimeout(() => {color.set('yellow');}, 1000);
+    returnColor = setTimeout(() => {target.material.emissiveIntensity = 0;}, 1000);
     
-    color.set('red');
-    
+    /* color.set('red'); */
+    target.material.emissive = new Color('red');
+    target.material.emissiveIntensity = 0.2;
 }
 
 const moveBullet = (scene, bulletSphere, bulletDirection, i) => {
