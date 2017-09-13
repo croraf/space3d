@@ -5,7 +5,7 @@ import {keysActive, viewTarget, mouseActive} from './setup/attachEventHandlers';
 
 import {engine} from './redux/ship/engine';
 
-const speedBase = 0.09;
+const speedBase = 0.07;
 const rotationSpeedBase = 1/180 * Math.PI;
 
 const positionUpdateCruise = (camera) => {
@@ -23,7 +23,7 @@ const positionUpdateCruise = (camera) => {
                 camera.translateOnAxis(new Vector3(0,0,-1), speedBase*1.2);
                 break;
             case '83':/* s */
-                camera.translateOnAxis(new Vector3(0,0,-1), - speedBase*0.3);
+                camera.translateOnAxis(new Vector3(0,0,-1), - speedBase*0.5);
                 break;
             case '32':
                 // SPACE, restart

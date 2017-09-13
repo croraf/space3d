@@ -3,17 +3,25 @@ import {getCube, getSphere} from './objects/objectCreators';
 import {Vector3, TextureLoader} from 'three';
 
 import {scene} from './setup/createScene';
+
 const setupScene = () => {
     
     const cube1 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:10});
-    const cube2 = getCube({x:1, y:1, z:1}, {x:10, y:0, z:20});
-    const cube3 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:30});
-    const cube4 = getCube({x:1, y:1, z:1}, {x:-10, y:0, z:20});
-
+    cube1.name = 'cube1';
     scene.add(cube1);
+
+    const cube2 = getCube({x:1, y:1, z:1}, {x:10, y:0, z:20});
+    cube2.name = 'cube2';
     scene.add(cube2);
+
+    const cube3 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:30});
+    cube3.name = 'cube3';
     scene.add(cube3);
+
+    const cube4 = getCube({x:1, y:1, z:1}, {x:-10, y:0, z:20});
+    cube4.name = 'cube4';
     scene.add(cube4);
+
 
 
     const sphereA = getSphere(new Vector3(0, 0, 10), 3, 16, 0xFFDD00);
@@ -33,12 +41,12 @@ const setupScene = () => {
 
     new TextureLoader().load('sun.jpg', (texture)=>{
 
-        const sun1 = getSphere(new Vector3(40, 220, -450), 120, 24, 0xFFDD00, texture);
+        const sun1 = getSphere(new Vector3(40, 220, -650), 120, 24, 0xFFDD00, texture);
         sun1.name = 'Omega';
         scene.add( sun1 );
     });
 
-    new TextureLoader().load('planet3.jpg', (texture)=>{
+    new TextureLoader().load('planet3.png', (texture)=>{
 
         const planet3 = getSphere(new Vector3(-400, -100, -100), 50, 24, 0xFFDD00, texture);
         planet3.name = 'Moscow';
