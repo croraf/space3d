@@ -2,29 +2,38 @@ import {container} from './setup/webGLsetup';
 
 const dashboard = {};
 
+const textRow = document.createElement('div');
+textRow.setAttribute('class', 'textRow');
+container.appendChild( textRow );
+
+
 const thrustInfo = document.createElement('div');
 thrustInfo.setAttribute('class', 'thrustInfo');
 thrustInfo.innerHTML='0%';
 
-container.appendChild( thrustInfo );
-
+textRow.appendChild( thrustInfo );
 dashboard.thrustInfo = thrustInfo;
-
-
-const rocketCooldown = document.createElement('div');
-rocketCooldown.setAttribute('class', 'rocketCooldown');
-rocketCooldown.innerHTML='0';
-
-container.appendChild( rocketCooldown );
-dashboard.rocketCooldown = rocketCooldown;
 
 
 const selectedItem = document.createElement('div');
 selectedItem.setAttribute('class', 'selectedItem');
 selectedItem.innerHTML='';
 
-container.appendChild( selectedItem );
+textRow.appendChild( selectedItem );
 dashboard.selectedItem = selectedItem;
+
+
+const rocketCooldown = document.createElement('div');
+rocketCooldown.setAttribute('class', 'rocketCooldown');
+rocketCooldown.innerHTML='0';
+
+textRow.appendChild( rocketCooldown );
+dashboard.rocketCooldown = rocketCooldown;
+
+
+
+
+
 
 
 const spaceshipWindow = document.createElement('div');

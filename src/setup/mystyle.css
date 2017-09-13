@@ -9,31 +9,36 @@
     left: 4px;
 }
 
+.textRow {
+    z-index: 5;
+    position: absolute;
+    top: 90%;
+    color: white;
+    /* border: 1px solid gray; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+} 
+
 .thrustInfo {
     z-index: 5;
-    /* border: 10px solid lightgray; */
-    position: absolute;
-    top: 400px;
-    left: 40px;
-    font-size: 25px;
+    font-size: 20px;
     color: white;
+    margin-left: 10px;
 }
-
-.rocketCooldown {
-    z-index: 5;
-    position: absolute;
-    top: 400px;
-    left: 550px;
-    font-size: 25px;
-    color: white;
-} 
 
 .selectedItem {
     z-index: 5;
-    position: absolute;
-    top: 400px;
-    left: 280px;
-    font-size: 20px;
+    font-size: 17px;
     color: white;
 } 
+
+.rocketCooldown {
+    z-index: 5;
+    font-size: 20px;
+    color: white;
+    margin-right: 10px;
+} 
+
+
 

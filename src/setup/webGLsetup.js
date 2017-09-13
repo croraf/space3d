@@ -10,6 +10,7 @@ const camera = new PerspectiveCamera( 75, 4 / 3, 0.1, 1000 );
 const renderer = new WebGLRenderer({antialias: true, alpha: true});
 
 const container = document.getElementById('my_gl_container');
+container.style.position = 'absolute';
 renderer.setSize( 640, 480 );
 
 const canvasElement = renderer.domElement;
