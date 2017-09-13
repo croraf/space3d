@@ -58,7 +58,7 @@ function animate() {
     /* logicUpdate(); */ 
     firingUpdate(scene, camera);
 
-    scene.getObjectByName('target').translateOnAxis(new Vector3(1, 0, 0), 0.01);
+    scene.getObjectByName('target').translateOnAxis(new Vector3(1, 0, 0), 0.02);
  
     renderer.render( scene, camera );
 }

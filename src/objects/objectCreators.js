@@ -45,21 +45,31 @@ const getCircle = (position=new Vector3(0,0,0)) => {
     return circle;
 }
 
-const getSphere = (position, radius, slices, color=0xFFFFFF, texture) => {
+const getSphere = (position, radius, slices, color=0xFFFFFF, texture, phong) => {
     const geometry = new SphereGeometry( radius, slices, slices );
 
     let material;
 
     if (texture) {
 
-        console.log('sun');
-        material = new MeshBasicMaterial( {
-            map: texture,
-            overdraw: 0.5
-        } );
-    } else {
-        material = new MeshBasicMaterial( { color: color } );
+        if (phong) {
+            
+            material = new MeshPhongMaterial({map: texture, specular: 0x555555, shininess: 10 })
+        } else {
 
+            material = new MeshBasicMaterial({
+                map: texture,
+                overdraw: 1
+            });
+        }
+        
+    } else {
+
+        if (phong){
+            material = new MeshPhongMaterial({color: color, specular: 0x555555, shininess: 20 })
+        } else {
+            material = new MeshBasicMaterial( { color: color } );
+        }
     }
 
     const sphere = new Mesh( geometry, material );
