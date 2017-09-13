@@ -1,49 +1,27 @@
 
 import {camera, renderer, container} from './setup/webGLsetup';
 
-import {createScene} from './setup/createScene';
+import {scene} from './setup/createScene';
 
 
-import {getCube, getSphere, getTube} from './objects/objectCreators';
-import {Vector3, TextureLoader, ImageUtils, SphericalRefractionMapping} from 'three';
+
+import {Vector3} from 'three';
 
 import {attachHandlers} from './setup/attachEventHandlers';
 
 
 import {getPipeline} from './objects/complexObjects';
 
-attachHandlers();
 
-const scene = createScene();
+/* const scene = createScene(); */
 
-const cube1 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:10});
-const cube2 = getCube({x:1, y:1, z:1}, {x:10, y:0, z:20});
-const cube3 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:30});
-const cube4 = getCube({x:1, y:1, z:1}, {x:-10, y:0, z:20});
+import {setupScene} from './setupScene';
 
-new TextureLoader().load('space4.png', (texture)=>{
-    console.log('loaded');
-    const planet1 = getSphere(new Vector3(-120, 100, -550), 60, 24,  0x00FFDD, texture);
-    scene.add( planet1 );
-}); 
-
-new TextureLoader().load('sun.jpg', (texture)=>{
-    console.log('loaded');
-    const sun1 = getSphere(new Vector3(40, 220, -450), 120, 24, 0xFFDD00, texture);
-    scene.add( sun1 );
-}); 
-/* setInterval(()=>{console.log('update'); texture2.needsUpdate=true;}, 7000); */
-
-
-
+setupScene();
 
 const pipeline1 = getPipeline(new Vector3(20, 0, 0), new Vector3(-30, 0, -300));
-const pipeline2 = getPipeline( new Vector3(-40, 0, -170), new Vector3(-40, 0, 20));
+const pipeline2 = getPipeline(new Vector3(-40, 0, -170), new Vector3(-40, 0, 20));
 
-scene.add(cube1);
-scene.add(cube2);
-scene.add(cube3);
-scene.add(cube4);
 
 scene.add( pipeline1 );
 scene.add( pipeline2 );
@@ -54,13 +32,10 @@ camera.lookAt({x: 0, y: 0, z: 0});
 
 scene.add(camera);
 
+attachHandlers();
 
 
-
-
-
-import {createDashboard} from './dashboard';
-
+import {dashboard} from './dashboard';
 
 import {cameraUpdate} from './cameraUpdate';
 import {checkPipelines} from './checkPipelines';
@@ -68,7 +43,7 @@ import {dashboardUpdate} from './dashboardUpdate';
 import {firingUpdate} from './firingUpdate';
 
 
-const dashboard = createDashboard(container);
+/* const dashboard = createDashboard(container); */
 
 function animate() {
     requestAnimationFrame( animate );
@@ -78,6 +53,8 @@ function animate() {
     dashboardUpdate(dashboard); 
     /* logicUpdate(); */ 
     firingUpdate(scene, camera);
+
+    scene.getObjectByName('target').translateOnAxis(new Vector3(1, 0, 0), 0.01);
  
     renderer.render( scene, camera );
 }

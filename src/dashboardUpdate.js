@@ -4,9 +4,7 @@ import {keysActive} from './setup/attachEventHandlers';
 import {engine, stopThrust, changeThrust} from './redux/ship/engine';
 import {weapons} from './redux/ship/weapons';
 
-/* const thrustUpdate = (thrustInfo, loading) => {
-    thrustInfo.innerHTML = loading
-} */
+import {dashboard} from './dashboard';
 
 let count = 0;
 
@@ -54,4 +52,14 @@ const dashboardUpdate = (dashboard) => {
     if (count % 40 === 0) updateRocketCooldown(dashboard.rocketCooldown);  
 };
 
-export {dashboardUpdate};
+const setSelectedElement = (intersects) => {
+
+    if (intersects.length > 0) {
+        dashboard.selectedItem.innerHTML = intersects[0].object.name + ', ' + (intersects[0].distance*10).toFixed(1) + 'm';
+    } else {
+        dashboard.selectedItem.innerHTML = '';
+    }
+
+}
+
+export {dashboardUpdate, setSelectedElement};

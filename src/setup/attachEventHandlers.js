@@ -3,6 +3,8 @@ import {canvasElement} from './webGLsetup';
 
 import {weapons, fireRocket} from '../redux/ship/weapons';
 
+import {checkMouseIntersect} from '../utils/checkMouseIntersect';
+
 const keysActive = {};
 const mouseActive = {left: false, right: false};
 const viewTarget = {x: 0, y: 0};
@@ -34,17 +36,17 @@ const mouseMoveHandler = (event) => {
 const mouseDownHandler = (event) => {
     /* console.log(event); */
     if (event.which === 1) {
-        mouseActive.left = true;
-        weapons.turret = true;
+        if (keysActive['17'] === true) {fireRocket();}
+        else {weapons.turret = true;}
     } else if (event.which === 3) {
-        fireRocket();
+        /* fireRocket(); */
+        checkMouseIntersect(event);
     }
 }
 
 const mouseUpHandler = (event) => {
     /* console.log(event); */
     if (event.which === 1) {
-        mouseActive.left = false;
         weapons.turret = false;
     } else if (event.which === 3) {
     }
@@ -59,6 +61,10 @@ const attachHandlers = () => {
     document.addEventListener('mousedown', mouseDownHandler, false);
     document.addEventListener('mouseup', mouseUpHandler, false);
     document.addEventListener('contextmenu', event => event.preventDefault());
+
+    document.addEventListener('blur', () => {
+        for (var x in keysActive) if (keysActive.hasOwnProperty(x)) delete keysActive[x];
+    });
 }
 
 export {attachHandlers, keysActive, viewTarget, mouseActive};

@@ -27,3 +27,13 @@
     font-size: 25px;
     color: white;
 } 
+
+.selectedItem {
+    z-index: 5;
+    position: absolute;
+    top: 400px;
+    left: 280px;
+    font-size: 20px;
+    color: white;
+} 
+

@@ -4,14 +4,36 @@ import {Vector3} from 'three';
 
 import {weapons} from './redux/ship/weapons';
 
+import {checkCollisionSpheres} from './utils/checkCollision';
+
 let count = 0;
+
+let returnColor = setTimeout(() => {}, 10000);
+const animateHit = (target) => {
+
+    const color = target.material.color;
+
+    clearTimeout(returnColor);
+    returnColor = setTimeout(() => {color.set('yellow');}, 1000);
+    
+    color.set('red');
+    
+}
 
 const moveBullet = (scene, bulletSphere, bulletDirection, i) => {
 
     bulletSphere.translateOnAxis(bulletDirection, 1);
 
-    if (i===0) scene.remove(bulletSphere);
-    else setTimeout(()=>{moveBullet(scene, bulletSphere, bulletDirection, i-1)}, 35);
+    if (checkCollisionSpheres(bulletSphere, scene.getObjectByName('target'))){
+
+        animateHit(scene.getObjectByName('target'));
+        scene.remove(bulletSphere);
+    } else {
+        
+        if (i===0) scene.remove(bulletSphere);
+        else setTimeout(()=>{moveBullet(scene, bulletSphere, bulletDirection, i-1)}, 35);
+    }
+
 }
 
 const animateFire = (scene, camera) => {
