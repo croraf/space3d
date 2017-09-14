@@ -36,16 +36,16 @@ const setupScene = () => {
 
     textureLoader.load('space4.png', (texture)=>{
 
-        const planet1 = getSphere(new Vector3(-120, 130, -750), 60, 24,  0x00FFDD, texture, true);
-        planet1.name = 'London';
-        scene.add( planet1 );
+        const planet = getSphere(new Vector3(-120, 140, -750), 50, 24,  0x00FFDD, texture, true);
+        planet.name = 'London';
+        scene.add( planet );
     }); 
 
     textureLoader.load('sun2.jpg', (texture)=>{
 
-        const sun1 = getSphere(new Vector3(850, 250, -350), 170, 24, 0xFFDD00, texture);
-        sun1.name = 'Omega';
-        scene.add( sun1 );
+        const sun = getSphere(new Vector3(850, 250, -350), 170, 24, 0xFFDD00, texture);
+        sun.name = 'Omega';
+        scene.add( sun );
 
 
         const spotLight = new SpotLight( 0xffffff, 1 );
@@ -66,9 +66,16 @@ const setupScene = () => {
 
     textureLoader.load('planet3.png', (texture)=>{
 
-        const planet3 = getSphere(new Vector3(-500, -160, -400), 80, 24, 0xFFDD00, texture, true);
-        planet3.name = 'Moscow';
-        scene.add( planet3 );
+        const planet = getSphere(new Vector3(-700, -100, -400), 90, 24, 0xFFDD00, texture, true);
+        planet.name = 'Moscow';
+        scene.add( planet );
+    });
+
+    textureLoader.load('planet_red.jpg', (texture)=>{
+        
+        const planet = getSphere(new Vector3(300, -160, -500), 60, 24, 0xFFDD00, texture, true);
+        planet.name = 'Shanghai';
+        scene.add( planet );
     });
 
 

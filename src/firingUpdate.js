@@ -27,7 +27,6 @@ const moveBullet = (scene, bulletSphere, bulletDirection, i, isRocket) => {
 
     if (checkCollisionSpheres(bulletSphere, scene.getObjectByName('target'))){
 
-        console.log(isRocket);
         animateHit(scene.getObjectByName('target'), bulletSphere.bulletType);
         scene.remove(bulletSphere);
     } else {
