@@ -5,19 +5,23 @@ import {camera} from '../setup/webGLsetup';
 
 import {setSelectedElement} from '../dashboardUpdate';
 
-import {canvasElement} from '../setup/webGLsetup';
+import {canvasElement, container} from '../setup/webGLsetup';
+
 const elementWidth = canvasElement.offsetWidth/2;
 const elementHeight = canvasElement.offsetHeight/2;
+const shiftX = container.offsetLeft + elementWidth;
+const shiftY = container.offsetTop + elementHeight;
 
 const raycaster =  new Raycaster();  
 
 
 const checkMouseIntersect = (event) => {
 
-    const viewX = (event.clientX - (canvasElement.offsetLeft + elementWidth)) / elementWidth;
-    const viewY = (event.clientY - (canvasElement.offsetTop + elementHeight)) / elementHeight;
+    const viewX = (event.clientX - shiftX) / elementWidth;
+    const viewY = (event.clientY - shiftY) / elementHeight;
 
-    const mouse3D = new Vector2( viewX, -viewY);     
+    /* console.log(event.clientX - container.offsetLeft, event.clientY - container.offsetTop); */
+    const mouse3D = new Vector2( viewX, -viewY/* , 0.5 */);     
     
                                           
     raycaster.setFromCamera( mouse3D, camera );

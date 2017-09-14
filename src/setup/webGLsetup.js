@@ -5,7 +5,7 @@ import { PerspectiveCamera, WebGLRenderer} from 'three';
 import './mystyle.css';
 
 
-const camera = new PerspectiveCamera( 75, 8 / 5, 0.1, 1000 );
+const camera = new PerspectiveCamera( 75, 8 / 5, 0.1, 3000 );
 
 const renderer = new WebGLRenderer({antialias: true, alpha: true});
 
