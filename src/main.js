@@ -35,6 +35,7 @@ camera.position.y = 0;
 camera.lookAt({x: 0, y: 0, z: 0});
 
 scene.add(camera);
+camera.nonIntersectable = true;
 
 attachHandlers();
 

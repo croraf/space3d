@@ -7,11 +7,12 @@ import {keysActive} from './setup/attachEventHandlers';
 import {getTube} from './objects/objectCreators';
 
 const tube1 = getTube(new Vector3(0,0,0), new Vector3(0,0,-8));
-
-const drawTube = (scene, camera) => {
+tube1.nonIntersectable = true;
+tube1.name = 'tube';
+/* const drawTube = (scene, camera) => {
 
     camera.add(tube1);
-}
+} */
 
 
 const checkPipelines = (camera, pipelines) => {
@@ -32,6 +33,7 @@ const checkPipelines = (camera, pipelines) => {
 
                 enterPipeline(pipeline);
                 camera.add(tube1);
+                
                 /* camera.zoom = 0.1; */
             }
         });
