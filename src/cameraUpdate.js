@@ -6,7 +6,7 @@ import {keysActive, viewTarget, mouseActive} from './setup/attachEventHandlers';
 import {engine} from './redux/ship/engine';
 
 const speedBase = 0.07;
-const rotationSpeedBase = 1/180 * Math.PI;
+const rotationSpeedBase = 0.8/180 * Math.PI;
 
 const positionUpdateCruise = (camera) => {
 
@@ -81,8 +81,8 @@ const viewTargetUpdate = (camera) => {
     if (viewTarget.x > 0.05 || viewTarget.x < -0.05){
 
         let rotationSpeedActual = 0;
-        if (viewTarget.x > 1) rotationSpeedActual = 0 /* -rotationSpeed */;
-        else if (viewTarget.x < -1) rotationSpeedActual = 0 /* rotationSpeed */;
+        if (viewTarget.x > 0.8) rotationSpeedActual = -rotationSpeedBase * 0.8 /* -rotationSpeed */;
+        else if (viewTarget.x < -0.8) rotationSpeedActual = rotationSpeedBase * 0.8 /* rotationSpeed */;
         else rotationSpeedActual = - rotationSpeedBase * viewTarget.x;
 
         camera.rotateY(rotationSpeedActual);
