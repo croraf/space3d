@@ -4,7 +4,7 @@ const loader = new CubeTextureLoader();
 loader.setPath();
     
 const texture = loader.load( [
-    'space10.png', 'space10.png', 'space10.png', 'space10.png', 'space10.png', 'space10.png'
+    'space10.jpg', 'space10.jpg', 'space10.jpg', 'space10.jpg', 'space10.jpg', 'space10.jpg'
 ] ); 
 
 
