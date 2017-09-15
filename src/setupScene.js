@@ -6,7 +6,7 @@ import {scene} from './setup/createScene';
 
 const setupScene = () => {
     
-    const cube1 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:10});
+    /* const cube1 = getCube({x:1, y:1, z:1}, {x:0, y:0, z:10});
     cube1.name = 'box1';
     scene.add(cube1);
 
@@ -20,7 +20,7 @@ const setupScene = () => {
 
     const cube4 = getCube({x:1, y:1, z:1}, {x:-10, y:0, z:20});
     cube4.name = 'box4';
-    scene.add(cube4);
+    scene.add(cube4); */
 
 
 
