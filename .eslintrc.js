@@ -28,7 +28,6 @@ module.exports = {
             "error",
             "always"
         ],
-        'no-console': 0,
-        'switch':
+        'no-console': 0
     }
 };

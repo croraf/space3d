@@ -1,4 +1,4 @@
-import {getCube, getSphere} from './objects/objectCreators';
+import {getCube, getSphere, getParticleSystem} from './objects/objectCreators';
 
 import {Vector3, TextureLoader, SpotLight, DirectionalLight, LensFlare, AdditiveBlending, Color} from 'three';
 
@@ -28,9 +28,6 @@ const setupScene = () => {
     sphereA.name = 'target';
 
     scene.add(sphereA);
-
-    /* const planet2 = getSphere(new Vector3(-120, 0, -350), 60, 24,  0x00FFDD);
-    scene.add( planet2 ); */
 
     const textureLoader = new TextureLoader();
 
@@ -79,8 +76,7 @@ const setupScene = () => {
     });
 
 
-    
-    /* const particleSystem  = new ParticleSystem(particles, pMaterial); */
+    /* const nebula = getParticleSystem(textureLoader, scene); */
 };
 
 export {setupScene};

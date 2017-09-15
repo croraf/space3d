@@ -50,8 +50,14 @@ import {firingUpdate} from './firingUpdate';
 
 /* const dashboard = createDashboard(container); */
 
+import {getParticleSystem} from './objects/objectCreators';
+
+getParticleSystem(scene);
+
 function animate() {
     requestAnimationFrame( animate );
+
+    /* console.log(clock.getDelta()); */
 
     checkPipelines(camera, [pipeline1, pipeline2]); 
     cameraUpdate(camera); 
@@ -61,6 +67,10 @@ function animate() {
 
     scene.getObjectByName('target').translateOnAxis(new Vector3(1, 0, 0), 0.02);
  
+    /* if (scene.particleSystem1) {
+        scene.particleSystem1.tick( 0.01 );
+    } */
+
     renderer.render( scene, camera );
 }
 
