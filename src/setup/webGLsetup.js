@@ -5,13 +5,13 @@ import { PerspectiveCamera, WebGLRenderer} from 'three';
 import './mystyle.css';
 
 
-const camera = new PerspectiveCamera( 75, 8 / 5, 0.1, 3000 );
+const camera = new PerspectiveCamera( 75, 12 / 7, 0.1, 3000 );
 
 const renderer = new WebGLRenderer({antialias: true, alpha: true});
 
 const container = document.getElementById('my_gl_container');
 container.style.position = 'absolute';
-renderer.setSize( 800, 500 );
+renderer.setSize( 1200, 700 );
 
 const canvasElement = renderer.domElement;
 container.appendChild( canvasElement );
