@@ -75,8 +75,6 @@ const moveBullet = (scene, bulletSphere, bulletDirection, i) => {
         if (i===0) scene.remove(bulletSphere);
         else setTimeout(()=>{moveBullet(scene, bulletSphere, bulletDirection, i-1);}, 35);
     }
-
-
 };
 
 const animateFire = (scene, camera) => {
@@ -89,7 +87,7 @@ const animateFire = (scene, camera) => {
     scene.add(bulletSphere);
 
     moveBullet(scene, bulletSphere, bulletDirection, 50);
-}
+};
 
 const animateRocket = (scene, camera) => {
 
@@ -101,7 +99,7 @@ const animateRocket = (scene, camera) => {
     scene.add(bulletSphere);
 
     moveBullet(scene, bulletSphere, bulletDirection.multiplyScalar(1.2), 100);
-}
+};
 
 
 const firingUpdate = (scene, camera) => {

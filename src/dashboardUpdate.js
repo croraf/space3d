@@ -5,6 +5,7 @@ import {engine, stopThrust, changeThrust} from './redux/ship/engine';
 import {weapons} from './redux/ship/weapons';
 
 import {dashboard} from './dashboard';
+import {clock} from './setup/webGLsetup';
 
 let count = 0;
 
@@ -74,8 +75,8 @@ const setSelectedElement = (intersects) => {
 };
 
 const setWonScreen = () => {
-    console.log('win!!!');
-    dashboard.winScreen.innerHTML = 'Game won!';
+
+    dashboard.winScreen.innerHTML = 'Game won!<br />' + clock.getElapsedTime().toFixed(1) + ' seconds';
 };
 
 export {dashboardUpdate, setSelectedElement, setWonScreen};
