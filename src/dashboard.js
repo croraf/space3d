@@ -52,5 +52,5 @@ gameDescription.innerHTML=
     'Rocket has cooldown, shown bottom right. Right click the objects to get their info.<br />' +
     'Use shift key to enter cruise mode. Cruise engine has to load first (check bottom left corner with loading info).<br />' + 
     'Use pipelines to quickly move through space. Exit cruise or pipeline with ESC.<br /><br />' +
-    'OBJECTIVE: Destroy targets! (2 targets in this version)';
+    'OBJECTIVE: Destroy targets! (4 targets in this version)';
 container.appendChild( gameDescription );
