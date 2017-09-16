@@ -20,16 +20,20 @@ import {setupScene} from './setupScene';
 setupScene();
 
 const pipeline1 = getPipeline(new Vector3(20, 0, 0), new Vector3(-30, 0, -400));
-pipeline1.children[0].name = 'pipeline1' + pipeline1.children[0].name;
-pipeline1.children[1].name = 'pipeline1' + pipeline1.children[1].name;
+pipeline1.name = 'pipeline1';
+pipeline1.children[0].name = pipeline1.name + pipeline1.children[0].name;
+pipeline1.children[1].name = pipeline1.name + pipeline1.children[1].name;
 
 const pipeline2 = getPipeline(new Vector3(-40, 0, -300), new Vector3(-40, 0, 20));
-pipeline2.children[0].name = 'pipeline2' + pipeline2.children[0].name;
-pipeline2.children[1].name = 'pipeline2' + pipeline2.children[1].name;
+pipeline2.name = 'pipeline2';
+pipeline2.children[0].name = pipeline2.name + pipeline2.children[0].name;
+pipeline2.children[1].name = pipeline2.name + pipeline2.children[1].name;
 
 scene.add( pipeline1 );
 scene.add( pipeline2 );
 
+
+camera.name = 'camera';
 camera.position.z = 40;
 camera.position.y = 0;
 camera.lookAt({x: 0, y: 0, z: 0});
@@ -60,7 +64,7 @@ function animate() {
 
     /* console.log(clock.getDelta()); */
 
-    checkPipelines(camera, [pipeline1, pipeline2]); 
+    checkPipelines(camera, [scene.getObjectByName('pipeline1'), scene.getObjectByName('pipeline2')]); 
     cameraUpdate(camera); 
     dashboardUpdate(dashboard); 
     /* logicUpdate(); */ 

@@ -8,6 +8,8 @@ import {checkCollisionSpheres} from './utils/checkCollision';
 
 import {setWonScreen} from './dashboardUpdate';
 
+import {sceneObjects} from './redux/scene/sceneObjects';
+
 let count = 0;
 
 let returnColor = setTimeout(() => {}, 10000);
@@ -48,7 +50,7 @@ const moveBullet = (scene, bulletSphere, bulletDirection, i) => {
     bulletSphere.translateOnAxis(bulletDirection, 1);
 
     let hit = false;
-    [scene.getObjectByName('target1'), scene.getObjectByName('target2')].forEach((target) => {
+    sceneObjects.targets.forEach((target) => {
         
         if (target.dead === true || hit === true) return;
 
@@ -60,7 +62,11 @@ const moveBullet = (scene, bulletSphere, bulletDirection, i) => {
     });
 
     if (hit === true) {
-        if (scene.getObjectByName('target1').dead === true && scene.getObjectByName('target2').dead === true){
+        let gameWon = true;
+        sceneObjects.targets.forEach(target => {
+            if (target.dead === false) gameWon = false; 
+        });
+        if (gameWon === true){
             setWonScreen();
         }
         return;

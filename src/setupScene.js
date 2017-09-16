@@ -4,6 +4,8 @@ import {Vector3, TextureLoader, SpotLight, LensFlare, AdditiveBlending, Color} f
 
 import {scene} from './setup/createScene';
 
+import {sceneObjects} from './redux/scene/sceneObjects';
+
 const setupTargets = () => {
 
     let target = getSphere(new Vector3(0, 0, 10), 3, 16, 0xFFDD00, undefined, true);
@@ -11,12 +13,29 @@ const setupTargets = () => {
     target.health = 100;
     target.dead = false;
     scene.add(target);
+    sceneObjects.targets.push(target);
 
     target = getSphere(new Vector3(0, 0, -10), 3, 16, 0xFFDD00, undefined, true);
     target.name = 'target2';
     target.health = 100;
     target.dead = false;
     scene.add(target);
+    sceneObjects.targets.push(target);
+
+    target = getSphere(new Vector3(0, 0, -100), 3, 16, 0xFFDD00, undefined, true);
+    target.name = 'target3';
+    target.health = 100;
+    target.dead = false;
+    scene.add(target);
+    sceneObjects.targets.push(target);
+
+    target = getSphere(new Vector3(0, 0, 0), 3, 16, 0xFFDD00, undefined, true);
+    target.name = 'target4';
+    target.health = 100;
+    target.dead = false;
+    scene.add(target);
+    sceneObjects.targets.push(target);
+
 };
 
 const setupScene = () => {

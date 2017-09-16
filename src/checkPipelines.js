@@ -1,6 +1,6 @@
 import {Vector3} from 'three';
 
-import {engine, enterPipeline, exitPipeline, stopThrust} from './redux/ship/engine';
+import {engine, enterPipeline, exitPipeline} from './redux/ship/engine';
 
 import {keysActive} from './setup/attachEventHandlers';
 
@@ -9,10 +9,6 @@ import {getTube} from './objects/objectCreators';
 const tube1 = getTube(new Vector3(0,0,0), new Vector3(0,0,-8));
 tube1.nonIntersectable = true;
 tube1.name = 'tube';
-/* const drawTube = (scene, camera) => {
-
-    camera.add(tube1);
-} */
 
 
 const checkPipelines = (camera, pipelines) => {
@@ -27,9 +23,7 @@ const checkPipelines = (camera, pipelines) => {
                 camera.lookAt(pipeline.children[1].getWorldPosition()); 
 
                 const entrance = pipeline.children[0].getWorldPosition(); 
-                camera.position.x = entrance.x;
-                camera.position.y = entrance.y;
-                camera.position.z = entrance.z;
+                camera.position.set(entrance.x,entrance.y,entrance.z);
 
                 enterPipeline(pipeline);
                 camera.add(tube1);
@@ -47,7 +41,7 @@ const checkPipelines = (camera, pipelines) => {
             exitPipeline();
             camera.remove(tube1);
         }
-    };
+    }
 
 };
 

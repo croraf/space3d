@@ -2,7 +2,8 @@ const sceneObjects = {
     target: {
         hit: false
     },
-    selected: null
+    selected: null,
+    targets: []
 };
 
 export {sceneObjects};
