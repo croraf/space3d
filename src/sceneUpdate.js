@@ -36,9 +36,9 @@ const sceneUpdate = () => {
     /* scene.getObjectByName('target').translateOnAxis(new Vector3(1, 0, 0), 0.02); */
 
 
-    rotateAroundWorldAxis(scene.getObjectByName('target1'), new Vector3(0,0,-200), new Vector3(0,1,0), 0.0008);
+    rotateAroundWorldAxis(scene.getObjectByName('target1'), new Vector3(0,0,-200), new Vector3(0,1,0), 0.0009);
     rotateAroundWorldAxis(scene.getObjectByName('target2'), new Vector3(100,0,100), new Vector3(0,1,0), 0.001);
-    rotateAroundWorldAxis(scene.getObjectByName('target3'), new Vector3(100,0,-300), new Vector3(0,1,0), 0.0007);
+    rotateAroundWorldAxis(scene.getObjectByName('target3'), new Vector3(100,0,-300), new Vector3(0,1,0), 0.0009);
     rotateAroundWorldAxis(scene.getObjectByName('target4'), new Vector3(0,0,-150), new Vector3(0,1,0), 0.0013);
 };
 
