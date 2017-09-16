@@ -74,6 +74,7 @@ const setSelectedElement = (intersects) => {
 };
 
 const setWonScreen = () => {
+    console.log('win!!!');
     dashboard.winScreen.innerHTML = 'Game won!';
 };
 

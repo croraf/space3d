@@ -33,10 +33,9 @@ dashboard.rocketCooldown = rocketCooldown;
 
 const winScreen = document.createElement('div');
 winScreen.setAttribute('class', 'winScreen');
-winScreen.innerHTML='Not won';
+winScreen.innerHTML='';
 container.appendChild( winScreen );
-
-
+dashboard.winScreen = winScreen;
 
 
 const spaceshipWindow = document.createElement('div');
