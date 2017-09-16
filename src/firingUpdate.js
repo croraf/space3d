@@ -6,6 +6,8 @@ import {weapons} from './redux/ship/weapons';
 
 import {checkCollisionSpheres} from './utils/checkCollision';
 
+import {setWonScreen} from './dashboardUpdate';
+
 let count = 0;
 
 let returnColor = setTimeout(() => {}, 10000);
@@ -18,24 +20,58 @@ const animateHit = (target, bulletType) => {
     
     /* color.set('red'); */
     target.material.emissive = new Color('red');
-    bulletType === 'rocket' ? target.material.emissiveIntensity = 0.4 : target.material.emissiveIntensity = 0.2;
-}
 
-const moveBullet = (scene, bulletSphere, bulletDirection, i, isRocket) => {
+    switch (bulletType) {
+        case 'rocket':
+            target.material.emissiveIntensity = 0.4;
+            target.health -= 10;
+            break;
+        case 'turret':
+            target.material.emissiveIntensity = 0.2;
+            target.health -= 1;
+            break;
+        default:
+            break;
+    }
+
+    if (target.health <=0) {
+        clearTimeout(returnColor);
+        
+        target.dead = true;
+        target.material.transparent = true;
+        target.material.opacity = 0.2;
+    }
+};
+
+const moveBullet = (scene, bulletSphere, bulletDirection, i) => {
 
     bulletSphere.translateOnAxis(bulletDirection, 1);
 
-    if (checkCollisionSpheres(bulletSphere, scene.getObjectByName('target'))){
-
-        animateHit(scene.getObjectByName('target'), bulletSphere.bulletType);
-        scene.remove(bulletSphere);
-    } else {
+    let hit = false;
+    [scene.getObjectByName('target1'), scene.getObjectByName('target2')].forEach((target) => {
         
+        if (target.dead === true || hit === true) return;
+
+        if (checkCollisionSpheres(bulletSphere, target)){
+            animateHit(target, bulletSphere.bulletType);
+            scene.remove(bulletSphere);
+            hit = true;
+        }
+    });
+
+    if (hit === true) {
+        if (scene.getObjectByName('target1').dead === true && scene.getObjectByName('target2').dead === true){
+            setWonScreen();
+        }
+        return;
+    }
+    else {
         if (i===0) scene.remove(bulletSphere);
-        else setTimeout(()=>{moveBullet(scene, bulletSphere, bulletDirection, i-1)}, 35);
+        else setTimeout(()=>{moveBullet(scene, bulletSphere, bulletDirection, i-1);}, 35);
     }
 
-}
+
+};
 
 const animateFire = (scene, camera) => {
 
@@ -43,6 +79,7 @@ const animateFire = (scene, camera) => {
     const bulletSphere = getSphere(camera.getWorldPosition().addScaledVector(bulletDirection, 5), 0.2, 8);
 
     bulletSphere.nonIntersectable = true;
+    bulletSphere.bulletType = 'turret';
     scene.add(bulletSphere);
 
     moveBullet(scene, bulletSphere, bulletDirection, 50);

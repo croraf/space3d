@@ -31,7 +31,10 @@ textRow.appendChild( rocketCooldown );
 dashboard.rocketCooldown = rocketCooldown;
 
 
-
+const winScreen = document.createElement('div');
+winScreen.setAttribute('class', 'winScreen');
+winScreen.innerHTML='Not won';
+container.appendChild( winScreen );
 
 
 

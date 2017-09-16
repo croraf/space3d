@@ -1,8 +1,23 @@
 import {getCube, getSphere, getParticleSystem} from './objects/objectCreators';
 
-import {Vector3, TextureLoader, SpotLight, DirectionalLight, LensFlare, AdditiveBlending, Color} from 'three';
+import {Vector3, TextureLoader, SpotLight, LensFlare, AdditiveBlending, Color} from 'three';
 
 import {scene} from './setup/createScene';
+
+const setupTargets = () => {
+
+    let target = getSphere(new Vector3(0, 0, 10), 3, 16, 0xFFDD00, undefined, true);
+    target.name = 'target1';
+    target.health = 100;
+    target.dead = false;
+    scene.add(target);
+
+    target = getSphere(new Vector3(0, 0, -10), 3, 16, 0xFFDD00, undefined, true);
+    target.name = 'target2';
+    target.health = 100;
+    target.dead = false;
+    scene.add(target);
+};
 
 const setupScene = () => {
     
@@ -21,13 +36,7 @@ const setupScene = () => {
     const cube4 = getCube({x:1, y:1, z:1}, {x:-10, y:0, z:20});
     cube4.name = 'box4';
     scene.add(cube4); */
-
-
-
-    const sphereA = getSphere(new Vector3(0, 0, 10), 3, 16, 0xFFDD00, undefined, true);
-    sphereA.name = 'target';
-
-    scene.add(sphereA);
+    setupTargets();
 
     const textureLoader = new TextureLoader();
 

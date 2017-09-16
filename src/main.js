@@ -47,6 +47,7 @@ import {checkPipelines} from './checkPipelines';
 import {dashboardUpdate} from './dashboardUpdate';  
 import {firingUpdate} from './firingUpdate';
 
+import {sceneUpdate} from './sceneUpdate';
 
 /* const dashboard = createDashboard(container); */
 
@@ -65,8 +66,8 @@ function animate() {
     /* logicUpdate(); */ 
     firingUpdate(scene, camera);
 
-    scene.getObjectByName('target').translateOnAxis(new Vector3(1, 0, 0), 0.02);
- 
+    sceneUpdate();
+
     /* if (scene.particleSystem1) {
         scene.particleSystem1.tick( 0.01 );
     } */

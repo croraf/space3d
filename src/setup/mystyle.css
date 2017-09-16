@@ -40,5 +40,16 @@
     margin-right: 10px;
 } 
 
+.winScreen {
+    z-index: 5;
+    position: absolute;
+    top: 40%;
+    color: white;
+    /* border: 1px solid gray; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+} 
 
 

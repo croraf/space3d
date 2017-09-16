@@ -64,10 +64,17 @@ const setSelectedElement = (intersects) => {
             }
         }
         dashboard.selectedItem.innerHTML = name + ', ' + (intersects[0].distance*10).toFixed(1) + 'm';
+
+        if (name==='target1' || name === 'target2') {
+            dashboard.selectedItem.innerHTML = dashboard.selectedItem.innerHTML + ', ' + 'health: ' + intersects[0].object.health + '%';
+        }
     } else {
         dashboard.selectedItem.innerHTML = '';
     }
+};
 
-}
+const setWonScreen = () => {
+    dashboard.winScreen.innerHTML = 'Game won!';
+};
 
-export {dashboardUpdate, setSelectedElement};
+export {dashboardUpdate, setSelectedElement, setWonScreen};

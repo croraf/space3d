@@ -20,7 +20,6 @@ const checkMouseIntersect = (event) => {
     const viewX = (event.clientX - shiftX) / elementWidth;
     const viewY = (event.clientY - shiftY) / elementHeight;
 
-    /* console.log(event.clientX - container.offsetLeft, event.clientY - container.offsetTop); */
     const mouse3D = new Vector2( viewX, -viewY/* , 0.5 */);     
     
                                           
