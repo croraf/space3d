@@ -43,3 +43,13 @@ spaceshipWindow.setAttribute('class', 'spaceshipWindow');
 container.appendChild( spaceshipWindow );
 
 export {dashboard};
+
+
+const gameDescription = document.createElement('div');
+gameDescription.setAttribute('class', 'gameDescription');
+gameDescription.innerHTML=
+    'Use A,S,D,W to move. Left click to fire. Use CTRL+fire to fire rocket.<br />' +
+    'Rocket has cooldown, shown bottom right. Right click the objects to get their info.<br />' +
+    'Use shift key to enter cruise mode. Cruise engine should load first (check bottom left corner with loading info).<br />' + 
+    'OBJECTIVE: Destroy targets! (when done it will show win message).';
+container.appendChild( gameDescription );
