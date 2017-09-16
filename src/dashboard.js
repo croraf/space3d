@@ -38,12 +38,25 @@ container.appendChild( winScreen );
 dashboard.winScreen = winScreen;
 
 
-const spaceshipWindow = document.createElement('div');
-spaceshipWindow.setAttribute('class', 'spaceshipWindow'); 
-container.appendChild( spaceshipWindow );
+const topRow = document.createElement('div');
+topRow.setAttribute('class', 'topRow');
+topRow.innerHTML='';
+container.appendChild( topRow );
+
+const time = document.createElement('div');
+time.setAttribute('class', 'time');
+time.innerHTML='0';
+dashboard.time = time;
+
+topRow.appendChild(time);
 
 export {dashboard};
 
+
+
+const spaceshipWindow = document.createElement('div');
+spaceshipWindow.setAttribute('class', 'spaceshipWindow'); 
+container.appendChild( spaceshipWindow );
 
 const gameDescription = document.createElement('div');
 gameDescription.setAttribute('class', 'gameDescription');

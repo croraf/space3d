@@ -50,6 +50,7 @@
     display: flex;
     justify-content: center;
     font-size: 40px;
+    text-align: center;
 } 
 
 .gameDescription {
@@ -61,6 +62,22 @@
     display: flex;
     justify-content: center;
     font-size: 20px;
-    text-align: center;
 } 
 
+.topRow {
+    z-index: 5;
+    position: absolute;
+    top: 2%;
+    color: white;
+    /* border: 1px solid gray; */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+} 
+
+.time {
+    z-index: 5;
+    font-size: 20px;
+    color: white;
+    margin-left: 10px;
+}

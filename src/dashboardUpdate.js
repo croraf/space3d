@@ -41,7 +41,12 @@ const updateRocketCooldown = (rocketCooldownElement) => {
         else if (cooldownNew > 0) rocketCooldownElement.style.color = 'orange';
         else rocketCooldownElement.style.color = 'white';
     }
-} 
+};
+
+const updateTime = () => {
+
+    dashboard.time.innerHTML = clock.getElapsedTime().toFixed(0) + 's';
+};
 
 const dashboardUpdate = (dashboard) => {
     
@@ -50,7 +55,9 @@ const dashboardUpdate = (dashboard) => {
 
     updateThrustInfo(dashboard);
 
-    if (count % 40 === 0) updateRocketCooldown(dashboard.rocketCooldown);  
+    if (count % 40 === 0) updateRocketCooldown(dashboard.rocketCooldown);
+
+    if (count % 60 === 0) updateTime();
 };
 
 const setSelectedElement = (intersects) => {
