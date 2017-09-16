@@ -8,7 +8,7 @@ import {sceneObjects} from './redux/scene/sceneObjects';
 
 const setupTargets = () => {
 
-    let target = getSphere(new Vector3(0, 0, 10), 3, 16, 0xFFDD00, undefined, true);
+    let target = getSphere(new Vector3(0, 0, 30), 3, 16, 0xFFDD00, undefined, true);
     target.name = 'target1';
     target.health = 100;
     target.dead = false;
