@@ -51,6 +51,6 @@ gameDescription.innerHTML=
     'Use A,S,D,W to move. Left click to fire. Use CTRL+fire to fire rocket.<br />' +
     'Rocket has cooldown, shown bottom right. Right click the objects to get their info.<br />' +
     'Use shift key to enter cruise mode. Cruise engine has to load first (check bottom left corner with loading info).<br />' + 
-    'Use pipelines to quickly shorten larger distance. Exit cruise or pipeline with ESC.' +
+    'Use pipelines to quickly shorten larger distance. Exit cruise or pipeline with ESC.<br />' +
     'OBJECTIVE: Destroy targets! (2 targets in this version)';
 container.appendChild( gameDescription );
