@@ -7,8 +7,12 @@ import {weapons} from './redux/ship/weapons';
 import {dashboard} from './dashboard';
 import {clock} from './setup/webGLsetup';
 
-let count = 0;
+import {sceneObjects} from './redux/scene/sceneObjects';
 
+import {camera} from './setup/webGLsetup';
+
+
+let count = 0;
 
 let loadingOld = 0;
 
@@ -58,23 +62,27 @@ const dashboardUpdate = (dashboard) => {
     if (count % 40 === 0) updateRocketCooldown(dashboard.rocketCooldown);
 
     if (count % 60 === 0) updateTime();
+
+    if (count % 60 === 0) setSelectedElement();
 };
 
-const setSelectedElement = (intersects) => {
+const setSelectedElement = () => {
 
-    if (intersects.length > 0) {
+    const currentSelection = sceneObjects.selected.object;
 
-        let name = intersects[0].object.name;
+    if (currentSelection) {
+
+        let name = currentSelection.name;
         if (!name) {
-            name = intersects[0].object.parent.name;
+            name = currentSelection.parent.name;
             if (!name){
-                name = intersects[0].object.parent.parent.name;
+                name = currentSelection.parent.parent.name;
             }
         }
-        dashboard.selectedItem.innerHTML = name + ', ' + (intersects[0].distance*10).toFixed(1) + 'm';
+        dashboard.selectedItem.innerHTML = name + ', ' + (currentSelection.position.distanceTo(camera.position)*10).toFixed(1) + 'm';
 
         if (name.startsWith('target')) {
-            dashboard.selectedItem.innerHTML = dashboard.selectedItem.innerHTML + ', ' + 'health: ' + intersects[0].object.health + '%';
+            dashboard.selectedItem.innerHTML = dashboard.selectedItem.innerHTML + ', ' + 'health: ' + currentSelection.health + '%';
         }
     } else {
         dashboard.selectedItem.innerHTML = '';

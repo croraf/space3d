@@ -1,4 +1,4 @@
-import {Raycaster, Vector3, Vector2} from 'three';
+import {Raycaster, Vector2} from 'three';
 
 import {scene} from '../setup/createScene';
 import {camera} from '../setup/webGLsetup';
@@ -6,6 +6,8 @@ import {camera} from '../setup/webGLsetup';
 import {setSelectedElement} from '../dashboardUpdate';
 
 import {canvasElement, container} from '../setup/webGLsetup';
+
+import {sceneObjects} from '../redux/scene/sceneObjects';
 
 const elementWidth = canvasElement.offsetWidth/2;
 const elementHeight = canvasElement.offsetHeight/2;
@@ -27,7 +29,8 @@ const checkMouseIntersect = (event) => {
 
     const intersects = raycaster.intersectObjects( scene.children.filter(object => !object.nonIntersectable), true );
 
-    setSelectedElement(intersects);
+    sceneObjects.selected = intersects.length > 0 ? intersects[0] : null;
+    /* setSelectedElement(intersects); */
     
     /* intersects.forEach(element => {
         console.log(element);
