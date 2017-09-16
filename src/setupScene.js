@@ -29,7 +29,7 @@ const setupTargets = () => {
     scene.add(target);
     sceneObjects.targets.push(target);
 
-    target = getSphere(new Vector3(0, 0, 0), 3, 16, 0xFFDD00, undefined, true);
+    target = getSphere(new Vector3(-5, 0, -5), 3, 16, 0xFFDD00, undefined, true);
     target.name = 'target4';
     target.health = 100;
     target.dead = false;
