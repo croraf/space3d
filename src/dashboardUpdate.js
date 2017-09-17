@@ -31,7 +31,7 @@ const updateThrustInfo = (dashboard) => {
         dashboard.thrustInfo.innerHTML = loadingNew + '%';
     }
     
-}
+};
  
 let cooldownOld = 0;
 const updateRocketCooldown = (rocketCooldownElement) => {
@@ -63,14 +63,16 @@ const dashboardUpdate = (dashboard) => {
 
     if (count % 60 === 0) updateTime();
 
-    if (count % 60 === 0) setSelectedElement();
+    if (count % 10 === 0) setSelectedElement();
 };
 
 const setSelectedElement = () => {
 
-    const currentSelection = sceneObjects.selected.object;
+    const currentSelection = sceneObjects.selected;
 
     if (currentSelection) {
+
+        /* console.log(currentSelection); */
 
         let name = currentSelection.name;
         if (!name) {
@@ -95,3 +97,4 @@ const setWonScreen = () => {
 };
 
 export {dashboardUpdate, setSelectedElement, setWonScreen};
+

@@ -31,11 +31,14 @@ textRow.appendChild( rocketCooldown );
 dashboard.rocketCooldown = rocketCooldown;
 
 
+const winRow = document.createElement('div');
+winRow.setAttribute('class', 'winRow');
+container.appendChild( winRow );
 const winScreen = document.createElement('div');
 winScreen.setAttribute('class', 'winScreen');
 winScreen.innerHTML='';
-container.appendChild( winScreen );
 dashboard.winScreen = winScreen;
+winRow.appendChild( winScreen );
 
 
 const topRow = document.createElement('div');

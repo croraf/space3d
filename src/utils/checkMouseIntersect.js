@@ -29,7 +29,7 @@ const checkMouseIntersect = (event) => {
 
     const intersects = raycaster.intersectObjects( scene.children.filter(object => !object.nonIntersectable), true );
 
-    sceneObjects.selected = intersects.length > 0 ? intersects[0] : null;
+    sceneObjects.selected = intersects.length > 0 ? intersects[0].object : null;
     /* setSelectedElement(intersects); */
     
     /* intersects.forEach(element => {
