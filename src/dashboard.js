@@ -57,9 +57,9 @@ export {dashboard};
 
 
 
-const spaceshipWindow = document.createElement('div');
+/* const spaceshipWindow = document.createElement('div');
 spaceshipWindow.setAttribute('class', 'spaceshipWindow'); 
-container.appendChild( spaceshipWindow );
+container.appendChild( spaceshipWindow ); */
 
 const gameDescription = document.createElement('div');
 gameDescription.setAttribute('class', 'gameDescription');

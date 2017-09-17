@@ -63,7 +63,7 @@ const dashboardUpdate = (dashboard) => {
 
     if (count % 60 === 0) updateTime();
 
-    if (count % 10 === 0) setSelectedElement();
+    if (count % 5 === 0) setSelectedElement();
 };
 
 const setSelectedElement = () => {

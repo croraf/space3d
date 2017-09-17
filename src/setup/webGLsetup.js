@@ -15,6 +15,7 @@ container.style.position = 'absolute';
 renderer.setSize( 1100, 600 );
 
 const canvasElement = renderer.domElement;
+canvasElement.setAttribute('class', 'mainCanvas');
 container.appendChild( canvasElement );
 
 setupAudio();
