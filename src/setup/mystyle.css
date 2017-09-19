@@ -87,6 +87,12 @@
     margin-left: 10px;
 }
 
+.autopilot {
+    z-index: 5;
+    font-size: 20px;
+    color: white;
+}
+
 .mainCanvas {
     cursor: crosshair;
 }

@@ -63,7 +63,19 @@ const dashboardUpdate = (dashboard) => {
 
     if (count % 60 === 0) updateTime();
 
-    if (count % 5 === 0) setSelectedElement();
+    if (count % 5 === 0) {
+        setSelectedElement();
+    }
+    
+    setAutopilot();
+};
+
+let oldAutopilot = engine.autopilot;
+const setAutopilot = () => {
+    if (oldAutopilot !== engine.autopilot) {
+        dashboard.autopilot.innerHTML = engine.autopilot ? 'AUTOPILOT' : '';
+        oldAutopilot = engine.autopilot;
+    };
 };
 
 const setSelectedElement = () => {

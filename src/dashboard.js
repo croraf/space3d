@@ -50,8 +50,20 @@ const time = document.createElement('div');
 time.setAttribute('class', 'time');
 time.innerHTML='0';
 dashboard.time = time;
-
 topRow.appendChild(time);
+
+const autopilot = document.createElement('div');
+autopilot.setAttribute('class', 'autopilot');
+autopilot.innerHTML='';
+dashboard.autopilot = autopilot;
+topRow.appendChild(autopilot);
+
+const dummy = document.createElement('div');
+dummy.setAttribute('class', 'dummy');
+dummy.innerHTML='a';
+dashboard.dummy = dummy;
+topRow.appendChild(dummy);
+
 
 export {dashboard};
 

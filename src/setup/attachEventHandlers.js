@@ -2,6 +2,7 @@
 import {canvasElement} from './webGLsetup';
 
 import {weapons, fireRocket} from '../redux/ship/weapons';
+import {toggleAutopilot} from '../redux/ship/engine';
 
 import {checkMouseIntersect} from '../utils/checkMouseIntersect';
 
@@ -12,6 +13,14 @@ const viewTarget = {x: 0, y: 0};
 const onDocumentKeyDown = (event) => {
 
     const keyCode = event.which;
+    switch (keyCode) {
+        case 32:
+            toggleAutopilot();
+            break;
+        default:
+            break;
+    }
+        
     keysActive[keyCode] = true; 
 };
 

@@ -1,3 +1,5 @@
+import {sceneObjects} from '../scene/sceneObjects';
+
 const engine = {
     cruise: {
         on: false,
@@ -7,7 +9,8 @@ const engine = {
     flight: {
         on: false,
         direction: undefined
-    }
+    },
+    autopilot: false
 };
 
 const changeThrust = (direction) => {
@@ -31,7 +34,17 @@ const enterPipeline = (pipeline) => {
 
 const exitPipeline = () => {
     engine.pipeline = null;
-}
+};
+
+const toggleAutopilot = () => {
+    console.log('toggle autopilot');
+    if (engine.autopilot === false && engine.cruise.on === false && engine.pipeline === null && sceneObjects.selected) {
+        engine.cruise.loading = 0;
+        engine.autopilot = true;
+    } else if (engine.autopilot === true) {
+        engine.autopilot = false;
+    }
+};
 
 
-export {engine, changeThrust, stopThrust, enterPipeline, exitPipeline};
+export {engine, changeThrust, stopThrust, enterPipeline, exitPipeline, toggleAutopilot};

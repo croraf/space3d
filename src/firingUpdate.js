@@ -10,6 +10,8 @@ import {setWonScreen} from './dashboardUpdate';
 
 import {sceneObjects} from './redux/scene/sceneObjects';
 
+import {sounds} from './redux/sounds/sounds';
+
 let count = 0;
 
 let returnColor = setTimeout(() => {}, 10000);
@@ -27,6 +29,8 @@ const animateHit = (target, bulletType) => {
         case 'rocket':
             target.material.emissiveIntensity = 0.4;
             target.health -= 10;
+            sounds.rocketMissile.pause();
+            sounds.rocketMissile.currentTime = 0;
             break;
         case 'turret':
             target.material.emissiveIntensity = 0.2;
@@ -86,6 +90,9 @@ const animateFire = (scene, camera) => {
     bulletSphere.bulletType = 'turret';
     scene.add(bulletSphere);
 
+    /* sounds.bullet.currentTime = 0; 
+    if (sounds.bullet.paused) {sounds.bullet.play();}*/
+
     moveBullet(scene, bulletSphere, bulletDirection, 50);
 };
 
@@ -97,6 +104,8 @@ const animateRocket = (scene, camera) => {
     bulletSphere.nonIntersectable = true;
     bulletSphere.bulletType = 'rocket';
     scene.add(bulletSphere);
+
+    sounds.rocketMissile.play();
 
     moveBullet(scene, bulletSphere, bulletDirection.multiplyScalar(1.2), 100);
 };

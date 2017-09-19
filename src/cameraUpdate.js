@@ -3,7 +3,10 @@ import {Vector3} from 'three';
 
 import {keysActive, viewTarget, mouseActive} from './setup/attachEventHandlers';
 
+import {dashboard} from './dashboard';
+
 import {engine} from './redux/ship/engine';
+import {sceneObjects} from './redux/scene/sceneObjects';
 
 const speedBase = 0.07;
 const rotationSpeedBase = 0.8/180 * Math.PI;
@@ -25,13 +28,7 @@ const positionUpdateCruise = (camera) => {
             case '83':/* s */
                 camera.translateOnAxis(new Vector3(0,0,-1), - speedBase*0.5);
                 break;
-            case '32':
-                // SPACE, restart
-                camera.position.set(0, 0, 15);
-                camera.lookAt({x: 0, y: 0, z: 0}); 
-                break;
             default:
-                
                 console.log('----------------------------key pressed', keyCode, typeof keyCode);
                 break;
         }
@@ -67,14 +64,13 @@ const positionUpdateThrust = (camera) => {
                 break;
         }
     });
-}
+};
 
 const positionUpdatePipeline = (camera) => {
 
     camera.translateOnAxis(new Vector3(0,0,-1), speedBase*4);
     camera.lookAt(engine.pipeline.children[1].getWorldPosition());
-
-}
+};
 
 const viewTargetUpdate = (camera) => {
 
@@ -88,9 +84,24 @@ const viewTargetUpdate = (camera) => {
         camera.rotateY(rotationSpeedActual);
     }
     
-}
+};
 
-
+const positionUpdateAutopilot = (camera) => {
+    const rotationalAxis = new Vector3().crossVectors(camera.getWorldDirection(), sceneObjects.selected.position).y;
+    const angle = camera.getWorldDirection().angleTo(sceneObjects.selected.position);
+    if (angle > 0.1) {
+        if (rotationalAxis > 0) {
+            camera.rotateY(rotationSpeedBase * 0.8);
+        } else {
+            camera.rotateY(-rotationSpeedBase * 0.8);
+        }
+    }
+    
+    /* console.log(rotationalAxis); */
+    /* camera.rotateOnAxis(rotationalAxis, rotationSpeedBase); */
+    /* dashboard.dummy = (angle*180/Math.PI).toFixed(1);
+    console.log((angle*180/Math.PI).toFixed(1)); */ /* camera.lookAt(); */
+};
 
 let globalCounter = 0;
 
@@ -99,7 +110,10 @@ const cameraUpdate = (camera) => {
     globalCounter++;
     globalCounter = globalCounter % 120;
 
-
+    if (engine.autopilot) {
+        positionUpdateAutopilot(camera);
+    } 
+    
     if (engine.pipeline) {
         positionUpdatePipeline(camera);
     } else if (engine.cruise.on) {
