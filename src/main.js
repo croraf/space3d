@@ -59,7 +59,7 @@ function animate() {
     sceneUpdate();
 
     updateMenu();
-    scene.getObjectByName('Omega').position.set(0,0,0);
+    /* scene.getObjectByName('Omega').position.set(0,0,0); */
     /* if (scene.particleSystem1) {
         scene.particleSystem1.tick( 0.01 );
     } */
