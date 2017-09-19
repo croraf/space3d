@@ -65,6 +65,21 @@ dashboard.dummy = dummy;
 topRow.appendChild(dummy);
 
 
+const menu = document.createElement('div');
+menu.setAttribute('class', 'menu');
+menu.innerHTML = 'CONTROLS: <br />' +
+'A,S,D,W -> move. <br />Left-click -> fire. <br />CTRL+left-click -> fire rocket. <br />' +
+'Right-click -> get object info. <br />Shift -> load cruise.<br /> Esc -> exit cruise or pipeline.<br /> Space -> toggle autopilot. <br />' +
+'<br />DISPLAY: <br />Rocket cooldown -> bottom right. <br /> Cruise load -> bottom left.<br />' +
+'Selected object info -> bottom middle. <br />' + 
+'<br />' +
+/* '<br /><br />' + */
+'OBJECTIVE: Destroy all targets!';
+menu.style.display = 'none';
+dashboard.menu = menu;
+container.appendChild(menu);
+
+
 export {dashboard};
 
 
@@ -75,10 +90,12 @@ container.appendChild( spaceshipWindow ); */
 
 const gameDescription = document.createElement('div');
 gameDescription.setAttribute('class', 'gameDescription');
-gameDescription.innerHTML=
-    'Use A,S,D,W to move. Left click to fire. Use CTRL+fire to fire rocket.<br />' +
-    'Rocket has cooldown, shown bottom right. Right click the objects to get their info.<br />' +
-    'Use shift key to enter cruise mode. Cruise engine has to load first (check bottom left corner with loading info).<br />' + 
-    'Use pipelines to quickly move through space. Exit cruise or pipeline with ESC.<br /><br />' +
-    'OBJECTIVE: Destroy all targets!';
+gameDescription.innerHTML= 'Press F1 to toggle MENU!';
+    /* 'CONTROLS: <br />' +
+    'A,S,D,W -> move. Left-click -> fire. CTRL+left-click -> fire rocket. ' +
+    'Right-click -> get object info. Shift -> load cruise.<br /> ESC -> exit cruise or pipeline.<br /> SPACE -> toggle autopilot. <br />' +
+    'INFO DISPLAY: <br />Rocket cooldown -> bottom right. <br /> Cruise load -> bottom left.' +
+    'Selected object info -> bottom middle. <br />' + 
+    '<br />' +
+    'OBJECTIVE: Destroy all targets!'; */
 container.appendChild( gameDescription );

@@ -5,20 +5,18 @@ import {engine, stopThrust, changeThrust} from './redux/ship/engine';
 import {weapons} from './redux/ship/weapons';
 
 import {dashboard} from './dashboard';
-import {clock} from './setup/webGLsetup';
+import {clock, globalCounter} from './redux/clock';
 
 import {sceneObjects} from './redux/scene/sceneObjects';
 
 import {camera} from './setup/webGLsetup';
 
 
-let count = 0;
-
 let loadingOld = 0;
 
 const updateThrustInfo = (dashboard) => {
 
-    if (count % 2 === 0 && !engine.cruise.on && engine.pipeline === null) {
+    if (globalCounter % 2 === 0 && !engine.cruise.on && engine.pipeline === null) {
         if (keysActive['16']===true) changeThrust(1);
         else if (engine.cruise.loading !== 0) changeThrust(-1);
     } else if (engine.cruise.on) {
@@ -53,29 +51,26 @@ const updateTime = () => {
 };
 
 const dashboardUpdate = (dashboard) => {
-    
-    count ++;
-    count = count % 120;
 
     updateThrustInfo(dashboard);
 
-    if (count % 40 === 0) updateRocketCooldown(dashboard.rocketCooldown);
+    if (globalCounter % 40 === 0) updateRocketCooldown(dashboard.rocketCooldown);
 
-    if (count % 60 === 0) updateTime();
+    if (globalCounter % 60 === 0) updateTime();
 
-    if (count % 5 === 0) {
+    if (globalCounter % 5 === 0) {
         setSelectedElement();
     }
-    
+
     setAutopilot();
 };
 
-let oldAutopilot = engine.autopilot;
+let oldAutopilot = engine.autopilot.on;
 const setAutopilot = () => {
-    if (oldAutopilot !== engine.autopilot) {
-        dashboard.autopilot.innerHTML = engine.autopilot ? 'AUTOPILOT' : '';
-        oldAutopilot = engine.autopilot;
-    };
+    if (oldAutopilot !== engine.autopilot.on) {
+        dashboard.autopilot.innerHTML = engine.autopilot.on ? 'AUTOPILOT' : '';
+        oldAutopilot = engine.autopilot.on;
+    }
 };
 
 const setSelectedElement = () => {

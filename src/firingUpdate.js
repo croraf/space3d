@@ -12,7 +12,7 @@ import {sceneObjects} from './redux/scene/sceneObjects';
 
 import {sounds} from './redux/sounds/sounds';
 
-let count = 0;
+import {globalCounter} from './redux/clock';
 
 let returnColor = setTimeout(() => {}, 10000);
 const animateHit = (target, bulletType) => {
@@ -113,10 +113,7 @@ const animateRocket = (scene, camera) => {
 
 const firingUpdate = (scene, camera) => {
     
-    count++;
-    count = count % 120;
-    
-    if (weapons.turret && count%10 === 0) {
+    if (weapons.turret && globalCounter % 10 === 0) {
         animateFire(scene, camera);
     }
 

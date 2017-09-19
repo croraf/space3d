@@ -7,6 +7,7 @@ import {dashboard} from './dashboard';
 
 import {engine} from './redux/ship/engine';
 import {sceneObjects} from './redux/scene/sceneObjects';
+import {menu} from './redux/menu/menu';
 
 const speedBase = 0.07;
 const rotationSpeedBase = 0.8/180 * Math.PI;
@@ -87,14 +88,21 @@ const viewTargetUpdate = (camera) => {
 };
 
 const positionUpdateAutopilot = (camera) => {
-    const rotationalAxis = new Vector3().crossVectors(camera.getWorldDirection(), sceneObjects.selected.position).y;
-    const angle = camera.getWorldDirection().angleTo(sceneObjects.selected.position);
-    if (angle > 0.1) {
-        if (rotationalAxis > 0) {
-            camera.rotateY(rotationSpeedBase * 0.8);
-        } else {
-            camera.rotateY(-rotationSpeedBase * 0.8);
-        }
+    const targetProjection = new Vector3().copy(engine.autopilot.target.position).setY(0);
+    const directionFromCamera = targetProjection.sub(camera.getWorldPosition());
+    const rotationalAxis = new Vector3().crossVectors(camera.getWorldDirection(), directionFromCamera);
+    
+    /* console.log(rotationalAxis); */
+
+    const angle = directionFromCamera.angleTo(camera.getWorldDirection());
+    /* if (globalCounter % 120 === 0) console.log(directionFromCamera, camera.getWorldDirection(),  angle.toFixed(2));*/
+
+    if (angle > 0.5) {
+        rotationalAxis.y > 0 ? camera.rotateY(rotationSpeedBase * 0.6) : camera.rotateY(-rotationSpeedBase * 0.6);
+    } else if (angle > 0.2) {
+        rotationalAxis.y > 0 ? camera.rotateY(rotationSpeedBase * 0.3) : camera.rotateY(-rotationSpeedBase * 0.3);
+    } else if (angle > 0.05) {
+        rotationalAxis.y > 0 ? camera.rotateY(rotationSpeedBase * 0.1) : camera.rotateY(-rotationSpeedBase * 0.1);
     }
     
     /* console.log(rotationalAxis); */
@@ -103,25 +111,25 @@ const positionUpdateAutopilot = (camera) => {
     console.log((angle*180/Math.PI).toFixed(1)); */ /* camera.lookAt(); */
 };
 
-let globalCounter = 0;
-
 const cameraUpdate = (camera) => {
 
-    globalCounter++;
-    globalCounter = globalCounter % 120;
-
-    if (engine.autopilot) {
-        positionUpdateAutopilot(camera);
-    } 
     
     if (engine.pipeline) {
         positionUpdatePipeline(camera);
     } else if (engine.cruise.on) {
         positionUpdateThrust(camera);
-        viewTargetUpdate(camera);
+        if (engine.autopilot.on) {
+            positionUpdateAutopilot(camera);
+        } else if (!menu.on) {
+            viewTargetUpdate(camera);
+        }
     } else {
         positionUpdateCruise(camera);
-        viewTargetUpdate(camera);
+        if (engine.autopilot.on) {
+            positionUpdateAutopilot(camera);
+        } else if (!menu.on) {
+            viewTargetUpdate(camera);
+        }
     }
     
 };

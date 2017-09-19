@@ -1,9 +1,13 @@
 
-import {camera, renderer, clock} from './setup/webGLsetup';
+import {camera, renderer} from './setup/webGLsetup';
+
+import {clock, increaseGlobalCounter} from './redux/clock';
 
 import {scene} from './setup/createScene';
 
 import {attachHandlers} from './setup/attachEventHandlers';
+
+import {updateMenu} from './menu/menu';
 
 /* const scene = createScene(); */
 
@@ -44,6 +48,7 @@ function animate() {
     requestAnimationFrame( animate );
 
     /* console.log(clock.getDelta()); */
+    increaseGlobalCounter();
 
     checkPipelines(camera, [scene.getObjectByName('pipeline1'), scene.getObjectByName('pipeline2')]); 
     cameraUpdate(camera); 
@@ -52,6 +57,8 @@ function animate() {
     firingUpdate(scene, camera);
 
     sceneUpdate();
+
+    updateMenu();
 
     /* if (scene.particleSystem1) {
         scene.particleSystem1.tick( 0.01 );

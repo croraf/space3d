@@ -3,6 +3,7 @@ import {canvasElement} from './webGLsetup';
 
 import {weapons, fireRocket} from '../redux/ship/weapons';
 import {toggleAutopilot} from '../redux/ship/engine';
+import {toggleMenu} from '../redux/menu/menu';
 
 import {checkMouseIntersect} from '../utils/checkMouseIntersect';
 
@@ -14,8 +15,12 @@ const onDocumentKeyDown = (event) => {
 
     const keyCode = event.which;
     switch (keyCode) {
-        case 32:
+        case 32: /* SPACE */
             toggleAutopilot();
+            event.preventDefault();
+            break;
+        case 112:
+            toggleMenu();
             break;
         default:
             break;

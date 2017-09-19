@@ -3,6 +3,7 @@ import {Vector3, Quaternion} from 'three';
 import {scene} from './setup/createScene';
 import {sceneObjects} from './redux/scene/sceneObjects';
 
+import {globalCounter} from './redux/clock';
 
 var q = new Quaternion();
 
@@ -19,14 +20,9 @@ const rotateAroundWorldAxis = ( object, point, axis, angle ) => {
     /* return this; */
 };
 
-let globalCount = 0;
-
 const sceneUpdate = () => {
-    
-    globalCount++;
-    globalCount = globalCount % 256;
 
-    if (globalCount === 0) {
+    if (globalCounter === 0) {
         sceneObjects.targets.forEach(target => {
             if (target.dead != true && target.health < 100) {
                 target.health++;

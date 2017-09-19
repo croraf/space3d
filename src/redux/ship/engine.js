@@ -1,4 +1,5 @@
 import {sceneObjects} from '../scene/sceneObjects';
+import {Vector3} from 'three';
 
 const engine = {
     cruise: {
@@ -10,7 +11,10 @@ const engine = {
         on: false,
         direction: undefined
     },
-    autopilot: false
+    autopilot: {
+        on: false,
+        target: null
+    }
 };
 
 const changeThrust = (direction) => {
@@ -38,11 +42,13 @@ const exitPipeline = () => {
 
 const toggleAutopilot = () => {
     console.log('toggle autopilot');
-    if (engine.autopilot === false && engine.cruise.on === false && engine.pipeline === null && sceneObjects.selected) {
-        engine.cruise.loading = 0;
-        engine.autopilot = true;
-    } else if (engine.autopilot === true) {
-        engine.autopilot = false;
+    if (engine.autopilot.on === false && engine.pipeline === null && sceneObjects.selected) {
+        engine.autopilot.on = true;
+        engine.autopilot.target = sceneObjects.selected.name ? sceneObjects.selected : sceneObjects.selected.parent;
+        console.log(engine.autopilot.target);
+    } else if (engine.autopilot.on === true) {
+        engine.autopilot.on = false;
+        engine.autopilot.target = null;
     }
 };
 
