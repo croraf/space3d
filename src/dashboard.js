@@ -58,11 +58,11 @@ autopilot.innerHTML='';
 dashboard.autopilot = autopilot;
 topRow.appendChild(autopilot);
 
-const dummy = document.createElement('div');
-dummy.setAttribute('class', 'dummy');
-dummy.innerHTML='a';
-dashboard.dummy = dummy;
-topRow.appendChild(dummy);
+const speedInfo = document.createElement('div');
+speedInfo.setAttribute('class', 'speedInfo');
+speedInfo.innerHTML='0';
+dashboard.speedInfo = speedInfo;
+topRow.appendChild(speedInfo);
 
 
 const menu = document.createElement('div');
@@ -91,11 +91,4 @@ container.appendChild( spaceshipWindow ); */
 const gameDescription = document.createElement('div');
 gameDescription.setAttribute('class', 'gameDescription');
 gameDescription.innerHTML= 'Press F1 to toggle MENU!';
-    /* 'CONTROLS: <br />' +
-    'A,S,D,W -> move. Left-click -> fire. CTRL+left-click -> fire rocket. ' +
-    'Right-click -> get object info. Shift -> load cruise.<br /> ESC -> exit cruise or pipeline.<br /> SPACE -> toggle autopilot. <br />' +
-    'INFO DISPLAY: <br />Rocket cooldown -> bottom right. <br /> Cruise load -> bottom left.' +
-    'Selected object info -> bottom middle. <br />' + 
-    '<br />' +
-    'OBJECTIVE: Destroy all targets!'; */
 container.appendChild( gameDescription );

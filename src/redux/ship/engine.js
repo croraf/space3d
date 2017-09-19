@@ -14,7 +14,8 @@ const engine = {
     autopilot: {
         on: false,
         target: null
-    }
+    },
+    speed: 0
 };
 
 const changeThrust = (direction) => {

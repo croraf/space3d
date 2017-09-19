@@ -87,6 +87,13 @@
     margin-left: 10px;
 }
 
+.speedInfo {
+    z-index: 5;
+    font-size: 20px;
+    color: white;
+    margin-right: 10px;
+}
+
 .autopilot {
     z-index: 5;
     font-size: 20px;

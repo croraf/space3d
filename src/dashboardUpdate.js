@@ -60,6 +60,7 @@ const dashboardUpdate = (dashboard) => {
 
     if (globalCounter % 5 === 0) {
         setSelectedElement();
+        setSpeedInfo();
     }
 
     setAutopilot();
@@ -71,6 +72,10 @@ const setAutopilot = () => {
         dashboard.autopilot.innerHTML = engine.autopilot.on ? 'AUTOPILOT' : '';
         oldAutopilot = engine.autopilot.on;
     }
+};
+
+const setSpeedInfo = () => {
+    dashboard.speedInfo.innerHTML = (engine.speed * 10500).toFixed(0);
 };
 
 const setSelectedElement = () => {
