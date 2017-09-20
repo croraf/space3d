@@ -30,6 +30,12 @@ function init() {
     setupDashboard();
     setupHandlers();
     setupAudio();
+
+    const MyWorker = require("worker-loader!./webWorker.js");
+    
+    const worker = new MyWorker();
+    worker.postMessage('Hello World!');
+    worker.onmessage = (message)=>{console.log(message);};
 }
 
 function animate() {

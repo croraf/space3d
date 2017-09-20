@@ -8,6 +8,7 @@ import {dashboard} from './model/dashboard/dashboard';
 import {engine} from './model/ship/engine';
 import {sceneObjects} from './model/scene/sceneObjects';
 import {menu} from './model/menu/menu';
+import {globalCounter} from './model/clock';
 
 const speedBase = 0.07;
 const rotationSpeedBase = 0.8/180 * Math.PI;
@@ -25,7 +26,7 @@ const speedUpdateNormal = () => {
                 if (engine.speed > -speedBase*0.5) engine.speed -= 0.001;
                 break;
             default:
-                console.log('----------------------------key pressed', keyCode, typeof keyCode);
+                if (globalCounter === 0) console.log('------------key pressed', keyCode, typeof keyCode);
                 break;
         }
     });
@@ -100,7 +101,6 @@ const moveSideways = (camera) => {
                     camera.translateOnAxis(new Vector3(0,0,-1).cross(new Vector3(0,1,0)), speedBase);
                     break;
                 default:
-                    console.log('----------------------------key pressed', keyCode, typeof keyCode);
                     break;
             }
         });
