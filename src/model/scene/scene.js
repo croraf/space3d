@@ -1,4 +1,4 @@
-import { PerspectiveCamera, WebGLRenderer, Scene, Fog, Color, TextureLoader, CubeTextureLoader} from 'three';
+import {Scene, CubeTextureLoader} from 'three';
 
 const loader = new CubeTextureLoader();
 loader.setPath();

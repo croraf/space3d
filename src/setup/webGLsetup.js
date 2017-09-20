@@ -1,10 +1,7 @@
-// Setups camera, scene and renderer. Mounts renderer into HTML DOM.
 
-import { PerspectiveCamera, WebGLRenderer} from 'three';
+import { WebGLRenderer} from 'three';
 import {setupAudio} from './setupAudio';
 import './mystyle.css';
-
-const camera = new PerspectiveCamera( 75, 11 / 6, 0.1, 3000 );
 
 const renderer = new WebGLRenderer({antialias: true, alpha: true});
 
@@ -18,4 +15,4 @@ container.appendChild( canvasElement );
 
 setupAudio();
 
-export {camera, renderer, container, canvasElement};
+export {renderer, container, canvasElement};

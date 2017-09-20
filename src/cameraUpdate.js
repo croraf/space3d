@@ -3,7 +3,7 @@ import {Vector3} from 'three';
 
 import {keysActive, viewTarget, mouseActive} from './setup/attachEventHandlers';
 
-import {dashboard} from './dashboard';
+import {dashboard} from './model/dashboard/dashboard';
 
 import {engine} from './model/ship/engine';
 import {sceneObjects} from './model/scene/sceneObjects';

@@ -1,6 +1,6 @@
 import {Vector3, Quaternion} from 'three';
 
-import {scene} from './setup/createScene';
+import {scene} from './model/scene/scene';
 import {sceneObjects} from './model/scene/sceneObjects';
 
 import {globalCounter} from './model/clock';

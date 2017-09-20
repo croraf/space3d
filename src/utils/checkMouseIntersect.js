@@ -1,7 +1,7 @@
 import {Raycaster, Vector2} from 'three';
 
-import {scene} from '../setup/createScene';
-import {camera} from '../setup/webGLsetup';
+import {scene} from '../model/scene/scene';
+import {camera} from '../model/camera';
 
 import {setSelectedElement} from '../dashboardUpdate';
 

@@ -2,7 +2,7 @@ import {getCube, getSphere, getParticleSystem, getPlanetRing} from './objects/ob
 
 import {Vector3, TextureLoader, SpotLight, LensFlare, AdditiveBlending, Color} from 'three';
 
-import {scene} from './setup/createScene';
+import {scene} from './model/scene/scene';
 
 import {sceneObjects} from './model/scene/sceneObjects';
 import {getPipeline} from './objects/complexObjects';

@@ -1,5 +1,5 @@
 import {menu} from '../model/menu/menu';
-import {dashboard} from '../dashboard';
+import {dashboard} from '../model/dashboard/dashboard';
 
 let oldMenu = false;
 

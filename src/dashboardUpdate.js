@@ -4,12 +4,12 @@ import {keysActive} from './setup/attachEventHandlers';
 import {engine, stopThrust, changeThrust} from './model/ship/engine';
 import {weapons} from './model/ship/weapons';
 
-import {dashboard} from './dashboard';
+import {dashboard} from './model/dashboard/dashboard';
 import {clock, globalCounter} from './model/clock';
 
 import {sceneObjects} from './model/scene/sceneObjects';
 
-import {camera} from './setup/webGLsetup';
+import {camera} from './model/camera';
 
 
 let loadingOld = 0;
