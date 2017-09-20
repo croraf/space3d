@@ -107,7 +107,7 @@ const moveSideways = (camera) => {
     }
 };
 
-const cameraUpdate = (camera) => {
+const playerUpdate = (camera) => {
 
     moveForward(camera);
     moveSideways(camera);
@@ -133,4 +133,4 @@ const cameraUpdate = (camera) => {
     
 };
 
-export {cameraUpdate};
+export {playerUpdate};

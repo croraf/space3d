@@ -20,7 +20,7 @@ const rotateAroundWorldAxis = ( object, point, axis, angle ) => {
     /* return this; */
 };
 
-const sceneUpdate = () => {
+const sceneObjectsUpdate = () => {
 
     if (globalCounter === 0) {
         sceneObjects.targets.forEach(target => {
@@ -38,4 +38,4 @@ const sceneUpdate = () => {
     rotateAroundWorldAxis(scene.getObjectByName('target4'), new Vector3(0,0,-180), new Vector3(0,1,0), 0.0015);
 };
 
-export {sceneUpdate};
+export {sceneObjectsUpdate};

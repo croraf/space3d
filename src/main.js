@@ -10,20 +10,20 @@ import {attachHandlers} from './setup/attachEventHandlers';
 
 import {updateMenu} from './menu/menu';
 
-import {setupScene} from './setupScene';
+import {setupScene} from './setup/setupScene';
 
 import {dashboard, setupDashboard} from './model/dashboard/dashboard';
 
-import {cameraUpdate} from './cameraUpdate';
+import {playerUpdate} from './playerUpdate';
 import {checkPipelines} from './checkPipelines';
 import {dashboardUpdate} from './dashboardUpdate';  
 import {firingUpdate} from './firingUpdate';
 
-import {sceneUpdate} from './sceneUpdate';
+import {sceneObjectsUpdate} from './sceneObjectsUpdate';
 
 import {getParticleSystem} from './objects/objectCreators';
 
-
+import {setupAudio} from './setup/setupAudio';
 
 function init() {
     
@@ -35,6 +35,8 @@ function init() {
 
     setupDashboard();
     attachHandlers();
+
+    setupAudio();
 }
 
 function animate() {
@@ -44,11 +46,11 @@ function animate() {
     increaseGlobalCounter();
 
     checkPipelines(camera, [scene.getObjectByName('pipeline1'), scene.getObjectByName('pipeline2')]); 
-    cameraUpdate(camera); 
+    playerUpdate(camera); 
     dashboardUpdate(dashboard); 
     firingUpdate(scene, camera);
 
-    sceneUpdate();
+    sceneObjectsUpdate();
 
     updateMenu();
 

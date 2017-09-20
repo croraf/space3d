@@ -13,7 +13,7 @@ const getPipelineEntrance = (position, target) => {
     pipelineEntrance.lookAt(target); 
 
     return pipelineEntrance;
-}
+};
 
 const getPipeline = (entrance1, entrance2) => {
     
@@ -25,6 +25,6 @@ const getPipeline = (entrance1, entrance2) => {
     pipeline.children[1].name = '-exit';
 
     return pipeline;
-}
+};
 
 export {getPipeline};

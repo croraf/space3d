@@ -1,6 +1,5 @@
 
 import { WebGLRenderer} from 'three';
-import {setupAudio} from './setupAudio';
 import './mystyle.css';
 
 const renderer = new WebGLRenderer({antialias: true, alpha: true});
@@ -13,6 +12,5 @@ const canvasElement = renderer.domElement;
 canvasElement.setAttribute('class', 'mainCanvas');
 container.appendChild( canvasElement );
 
-setupAudio();
 
 export {renderer, container, canvasElement};

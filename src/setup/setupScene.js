@@ -1,12 +1,13 @@
-import {getCube, getSphere, getParticleSystem, getPlanetRing} from './objects/objectCreators';
 
 import {Vector3, TextureLoader, SpotLight, LensFlare, AdditiveBlending, Color} from 'three';
 
-import {scene} from './model/scene/scene';
 
-import {sceneObjects} from './model/scene/sceneObjects';
-import {getPipeline} from './objects/complexObjects';
+import {scene} from '../model/scene/scene';
 
+import {sceneObjects} from '../model/scene/sceneObjects';
+
+import {getPipeline} from '../objects/complexObjects';
+import {getCube, getSphere, getParticleSystem, getPlanetRing} from '../objects/objectCreators';
 
 const setupTargets = () => {
 
