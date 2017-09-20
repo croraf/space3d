@@ -1,4 +1,4 @@
-import {sounds} from '../redux/sounds/sounds';
+import {sounds} from '../model/sounds/sounds';
 
 const setupAudio = () => {
 

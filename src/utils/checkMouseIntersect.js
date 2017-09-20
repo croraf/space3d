@@ -7,7 +7,7 @@ import {setSelectedElement} from '../dashboardUpdate';
 
 import {canvasElement, container} from '../setup/webGLsetup';
 
-import {sceneObjects} from '../redux/scene/sceneObjects';
+import {sceneObjects} from '../model/scene/sceneObjects';
 
 const elementWidth = canvasElement.offsetWidth/2;
 const elementHeight = canvasElement.offsetHeight/2;

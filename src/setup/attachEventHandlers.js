@@ -1,9 +1,9 @@
 
 import {canvasElement} from './webGLsetup';
 
-import {weapons, fireRocket} from '../redux/ship/weapons';
-import {toggleAutopilot} from '../redux/ship/engine';
-import {toggleMenu} from '../redux/menu/menu';
+import {weapons, fireRocket} from '../model/ship/weapons';
+import {toggleAutopilot} from '../model/ship/engine';
+import {toggleMenu} from '../model/menu/menu';
 
 import {checkMouseIntersect} from '../utils/checkMouseIntersect';
 

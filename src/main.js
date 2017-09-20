@@ -1,7 +1,7 @@
 
 import {camera, renderer} from './setup/webGLsetup';
 
-import {clock, increaseGlobalCounter} from './redux/clock';
+import {clock, increaseGlobalCounter} from './model/clock';
 
 import {scene} from './setup/createScene';
 
@@ -12,20 +12,6 @@ import {updateMenu} from './menu/menu';
 /* const scene = createScene(); */
 
 import {setupScene} from './setupScene';
-
-setupScene();
-
-
-camera.name = 'camera';
-camera.position.z = 40;
-camera.position.y = 0;
-camera.lookAt({x: 0, y: 0, z: 0});
-
-scene.add(camera);
-camera.nonIntersectable = true;
-
-attachHandlers();
-
 
 import {dashboard} from './dashboard';
 
@@ -40,9 +26,27 @@ import {sceneUpdate} from './sceneUpdate';
 
 import {getParticleSystem} from './objects/objectCreators';
 
-getParticleSystem(scene);
 
-clock.start();
+
+
+function init() {
+    
+    clock.start();
+
+    setupScene();
+
+    getParticleSystem(scene);
+    
+    camera.name = 'camera';
+    camera.position.z = 40;
+    camera.position.y = 0;
+    camera.lookAt({x: 0, y: 0, z: 0});
+    
+    scene.add(camera);
+    camera.nonIntersectable = true;
+    
+    attachHandlers();
+}
 
 function animate() {
     requestAnimationFrame( animate );
@@ -67,5 +71,5 @@ function animate() {
     renderer.render( scene, camera );
 }
 
-
+init();
 animate(); 

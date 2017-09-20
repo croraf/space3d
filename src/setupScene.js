@@ -1,10 +1,10 @@
-import {getCube, getSphere, getParticleSystem} from './objects/objectCreators';
+import {getCube, getSphere, getParticleSystem, getPlanetRing} from './objects/objectCreators';
 
 import {Vector3, TextureLoader, SpotLight, LensFlare, AdditiveBlending, Color} from 'three';
 
 import {scene} from './setup/createScene';
 
-import {sceneObjects} from './redux/scene/sceneObjects';
+import {sceneObjects} from './model/scene/sceneObjects';
 import {getPipeline} from './objects/complexObjects';
 
 
@@ -104,6 +104,9 @@ const setupScene = () => {
         planet.name = 'Shanghai';
         scene.add( planet );
     });
+
+    const ring = getPlanetRing(new Vector3(-120, 140, -750));
+    scene.add(ring);
 
 
     const pipeline1 = getPipeline(new Vector3(20, 0, 0), new Vector3(-30, 0, -400));

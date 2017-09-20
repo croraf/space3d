@@ -5,9 +5,9 @@ import {keysActive, viewTarget, mouseActive} from './setup/attachEventHandlers';
 
 import {dashboard} from './dashboard';
 
-import {engine} from './redux/ship/engine';
-import {sceneObjects} from './redux/scene/sceneObjects';
-import {menu} from './redux/menu/menu';
+import {engine} from './model/ship/engine';
+import {sceneObjects} from './model/scene/sceneObjects';
+import {menu} from './model/menu/menu';
 
 const speedBase = 0.07;
 const rotationSpeedBase = 0.8/180 * Math.PI;

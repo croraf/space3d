@@ -1,4 +1,4 @@
-import {menu} from '../redux/menu/menu';
+import {menu} from '../model/menu/menu';
 import {dashboard} from '../dashboard';
 
 let oldMenu = false;

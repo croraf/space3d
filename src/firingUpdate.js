@@ -2,17 +2,17 @@
 import {getSphere} from './objects/objectCreators';
 import {Vector3, Color} from 'three';
 
-import {weapons} from './redux/ship/weapons';
+import {weapons} from './model/ship/weapons';
 
 import {checkCollisionSpheres} from './utils/checkCollision';
 
 import {setWonScreen} from './dashboardUpdate';
 
-import {sceneObjects} from './redux/scene/sceneObjects';
+import {sceneObjects} from './model/scene/sceneObjects';
 
-import {sounds} from './redux/sounds/sounds';
+import {sounds} from './model/sounds/sounds';
 
-import {globalCounter} from './redux/clock';
+import {globalCounter} from './model/clock';
 
 let returnColor = setTimeout(() => {}, 10000);
 const animateHit = (target, bulletType) => {

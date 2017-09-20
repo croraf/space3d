@@ -1,7 +1,7 @@
 import { BoxGeometry, MeshBasicMaterial, Mesh, LineBasicMaterial, 
     Geometry, Vector3, Line, CircleGeometry, SphereGeometry, 
     TorusGeometry, DoubleSide,
-    TubeGeometry, LineCurve3, MeshPhongMaterial, SpriteCanvasMaterial, Sprite, Color, TextureLoader, ImageUtils} from 'three';
+    TubeGeometry, LineCurve3, MeshPhongMaterial, SpriteCanvasMaterial, Sprite, Color, TextureLoader, RingGeometry} from 'three';
 
 import SPE from 'shader-particle-engine';
 
@@ -97,6 +97,18 @@ const getTorus = (position=new Vector3(0,0,0)) => {
     return torus;
 };
 
+const getPlanetRing = (position=new Vector3(0,0,0)) => {
+
+    var geometry = new RingGeometry( 70, 95, 32 );
+    var material = new MeshPhongMaterial( { color: 0xFFFFFF, side: DoubleSide, specular: 0xffaaaa, shininess: 40, transparent: true, opacity: 0.5 } );
+    var ring = new Mesh( geometry, material );
+    
+    
+    ring.translateOnAxis(new Vector3(position.x, position.y, position.z), 1);
+    ring.rotateX(2.3);
+    return ring;
+};
+
 const getBullet = (position) => {
     const geometry = new SphereGeometry( 2, 8, 8 );
     const material = new MeshBasicMaterial( { color: 0xFFDD00 } );
@@ -167,4 +179,4 @@ const getParticleSystem = (scene) => {
     scene.add(wrapper);
 };
 
-export {getCube, getLine, getCircle, getSphere, getTorus, getTube, getParticleSystem};
+export {getCube, getLine, getCircle, getSphere, getTorus, getTube, getParticleSystem, getPlanetRing};

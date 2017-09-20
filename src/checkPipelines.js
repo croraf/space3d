@@ -1,6 +1,6 @@
 import {Vector3} from 'three';
 
-import {engine, enterPipeline, exitPipeline} from './redux/ship/engine';
+import {engine, enterPipeline, exitPipeline} from './model/ship/engine';
 
 import {keysActive} from './setup/attachEventHandlers';
 

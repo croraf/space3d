@@ -1,13 +1,13 @@
 
 import {keysActive} from './setup/attachEventHandlers';
 
-import {engine, stopThrust, changeThrust} from './redux/ship/engine';
-import {weapons} from './redux/ship/weapons';
+import {engine, stopThrust, changeThrust} from './model/ship/engine';
+import {weapons} from './model/ship/weapons';
 
 import {dashboard} from './dashboard';
-import {clock, globalCounter} from './redux/clock';
+import {clock, globalCounter} from './model/clock';
 
-import {sceneObjects} from './redux/scene/sceneObjects';
+import {sceneObjects} from './model/scene/sceneObjects';
 
 import {camera} from './setup/webGLsetup';
 

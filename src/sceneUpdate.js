@@ -1,9 +1,9 @@
 import {Vector3, Quaternion} from 'three';
 
 import {scene} from './setup/createScene';
-import {sceneObjects} from './redux/scene/sceneObjects';
+import {sceneObjects} from './model/scene/sceneObjects';
 
-import {globalCounter} from './redux/clock';
+import {globalCounter} from './model/clock';
 
 var q = new Quaternion();
 
