@@ -6,24 +6,20 @@ import {clock, increaseGlobalCounter} from './model/clock';
 
 import {scene} from './model/scene/scene';
 
-import {attachHandlers} from './setup/attachEventHandlers';
 
-import {updateMenu} from './menu/menu';
-
+import {setupHandlers} from './setup/attachEventHandlers';
 import {setupScene} from './setup/setupScene';
-
+import {setupAudio} from './setup/setupAudio';
 import {dashboard, setupDashboard} from './model/dashboard/dashboard';
+
 
 import {playerUpdate} from './playerUpdate';
 import {checkPipelines} from './checkPipelines';
 import {dashboardUpdate} from './dashboardUpdate';  
 import {firingUpdate} from './firingUpdate';
-
 import {sceneObjectsUpdate} from './sceneObjectsUpdate';
+import {updateMenu} from './menu/menu';
 
-import {getParticleSystem} from './objects/objectCreators';
-
-import {setupAudio} from './setup/setupAudio';
 
 function init() {
     
@@ -31,11 +27,8 @@ function init() {
 
     setupCamera(scene);
     setupScene();
-    getParticleSystem(scene);
-
     setupDashboard();
-    attachHandlers();
-
+    setupHandlers();
     setupAudio();
 }
 

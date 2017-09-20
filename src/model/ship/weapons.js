@@ -13,7 +13,7 @@ const decreaseRocketCooldown = (time) => {
     if (time === 0) return;
 
     setTimeout(()=>{decreaseRocketCooldown(time-1);}, 1000);
-}
+};
 
 const fireRocket = () => {
 
@@ -22,6 +22,6 @@ const fireRocket = () => {
         decreaseRocketCooldown(6);
         weapons.rocket.fired = true;
     }
-}
+};
 
 export {weapons, fireRocket};

@@ -9,6 +9,7 @@ import {sceneObjects} from '../model/scene/sceneObjects';
 import {getPipeline} from '../objects/complexObjects';
 import {getCube, getSphere, getParticleSystem, getPlanetRing} from '../objects/objectCreators';
 
+
 const setupTargets = () => {
 
     let target = getSphere(new Vector3(0, 0, 30), 3, 16, 0xFFDD00, undefined, true);
@@ -122,6 +123,14 @@ const setupScene = () => {
     
     scene.add( pipeline1 );
     scene.add( pipeline2 );
+
+
+    const cube1 = getCube({x:10, y:10, z:10}, {x:0, y:0, z:-20});
+    cube1.name = 'box1';
+    scene.add(cube1);
+
+
+    getParticleSystem(scene);
 };
 
 export {setupScene};

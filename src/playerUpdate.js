@@ -19,10 +19,10 @@ const speedUpdateNormal = () => {
 
         switch (keyCode) {
             case '87': /* w */
-                if (engine.speed < speedBase * 1.2) engine.speed += 0.002;
+                if (engine.speed < speedBase * 1.2) engine.speed += 0.001;
                 break;
             case '83':/* s */
-                if (engine.speed > -speedBase*0.5) engine.speed -= 0.002;
+                if (engine.speed > -speedBase*0.5) engine.speed -= 0.001;
                 break;
             default:
                 console.log('----------------------------key pressed', keyCode, typeof keyCode);
@@ -31,8 +31,8 @@ const speedUpdateNormal = () => {
     });
 
     if ((!keysActive['87'] && !keysActive['83']) || engine.speed > speedBase * 1.2) {
-        if (engine.speed > DELTA) {engine.speed -= 0.002;}
-        else if (engine.speed < -DELTA) {engine.speed += 0.002;}
+        if (engine.speed > DELTA) {engine.speed -= 0.001;}
+        else if (engine.speed < -DELTA) {engine.speed += 0.001;}
         
     }
 };
@@ -40,14 +40,14 @@ const speedUpdateNormal = () => {
 const speedUpdateCruise = () => {
 
     if (engine.speed < speedBase*2){
-        engine.speed += 0.002;
+        engine.speed += 0.001;
     }
 };
 
 const speedUpdatePipeline = () => {
 
     if (engine.speed < speedBase*4){
-        engine.speed += 0.002;
+        engine.speed += 0.001;
     }
 };
 

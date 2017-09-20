@@ -66,7 +66,7 @@ const mouseUpHandler = (event) => {
     }
 }
 
-const attachHandlers = () => {
+const setupHandlers = () => {
 
     document.addEventListener('keydown', onDocumentKeyDown, false);
     document.addEventListener('keyup', onDocumentKeyUp, false);
@@ -81,4 +81,4 @@ const attachHandlers = () => {
     });
 }
 
-export {attachHandlers, keysActive, viewTarget, mouseActive};
+export {setupHandlers, keysActive, viewTarget, mouseActive};
