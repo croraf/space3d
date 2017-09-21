@@ -128,7 +128,7 @@ const setupScene = () => {
     const cube1 = getCube({x:10, y:10, z:10}, {x:0, y:0, z:-20});
     cube1.name = 'box1';
     scene.add(cube1);
-
+    cube1.rotateY(0.5);
 
     getParticleSystem(scene);
 };

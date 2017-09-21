@@ -2,7 +2,7 @@
 import {renderer} from './setup/webGLsetup';
 import {camera, setupCamera} from './model/camera';
 
-import {clock, increaseGlobalCounter} from './model/clock';
+import {clock, increaseGlobalCounter, globalCounter} from './model/clock';
 
 import {scene} from './model/scene/scene';
 
@@ -19,7 +19,7 @@ import {dashboardUpdate} from './dashboardUpdate';
 import {firingUpdate} from './firingUpdate';
 import {sceneObjectsUpdate} from './sceneObjectsUpdate';
 import {updateMenu} from './menu/menu';
-
+import {checkIfInBox, setupHelpersForCheckIfInBox} from './utils/checkCollision';
 
 function init() {
     
@@ -30,12 +30,13 @@ function init() {
     setupDashboard();
     setupHandlers();
     setupAudio();
+    setupHelpersForCheckIfInBox(scene.getObjectByName('box1'));
 
-    const MyWorker = require("worker-loader!./webWorker.js");
+    /* const MyWorker = require("worker-loader!./webWorker.js");
     
     const worker = new MyWorker();
     worker.postMessage('Hello World!');
-    worker.onmessage = (message)=>{console.log(message);};
+    worker.onmessage = (message)=>{console.log(message);}; */
 }
 
 function animate() {
@@ -50,6 +51,12 @@ function animate() {
     firingUpdate(scene, camera);
 
     sceneObjectsUpdate();
+    
+    if (globalCounter % 16 === 0) {
+        
+        checkIfInBox(camera.getWorldPosition(), scene.getObjectByName('box1'));
+        
+    }
 
     updateMenu();
 

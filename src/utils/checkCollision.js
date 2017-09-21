@@ -1,16 +1,54 @@
+import {Box3, Matrix4, Color} from 'three';
+
 const checkCollisionSpheres = (sphere1, sphere2) => {
     // console.log(sphere1.getWorldPosition().distanceTo(sphere2.getWorldPosition()), sphere1.geometry.parameters.radius + sphere2.geometry.parameters.radius); 
     return sphere1.getWorldPosition().distanceTo(sphere2.getWorldPosition()) < sphere1.geometry.parameters.radius + sphere2.geometry.parameters.radius;
 };
 
-const checkCollisionPointCube = (point, cube) => {
+let theBox;
+let boxPosition;
+let boxSphereRadius;
+let boxMatrixInverse;
+let AABB;
 
-    /* const cubePosition = cube.position;
-    const cubeSize = cube.size;
 
-    if (point.x > cubePosition.x && point.x < cube.x + cube.size.x &&
-        point.y > cubePosition.y && point.x < cube.x + cube.size.x &&
-        point.z > cubePosition.z && point.x < cube.x + cube.size.x) */
+const setupHelpersForCheckIfInBox = (box) => {
+
+    theBox = box;
+    boxPosition = box.position;
+    const parameters = box.geometry.parameters;
+    boxSphereRadius = Math.sqrt(parameters.width*parameters.width + parameters.height*parameters.height + parameters.depth*parameters.depth) / 2;
+    box.updateMatrixWorld(true);
+    boxMatrixInverse = new Matrix4().getInverse(box.matrixWorld, false);
+    // console.log('setup matrix:', JSON.stringify(box.matrixWorld), JSON.stringify(boxMatrixInverse));
+    const inverseBox = box.clone();
+    inverseBox.applyMatrix(boxMatrixInverse);
+    AABB = new Box3().setFromObject(inverseBox);
+
+    //console.log(inverseBox);
 };
 
-export {checkCollisionSpheres};
+
+
+const colorRed = new Color('red');
+const colorGreen = new Color('green');
+
+const checkIfInBox = (point) => {
+
+    let inBox = false;
+
+    if (point.distanceTo(boxPosition) < boxSphereRadius) {
+
+        //console.log('in bounding sphere');
+        const inversePoint = point.clone();
+        //console.log('camera point:', inversePoint);
+        inversePoint.applyMatrix4(boxMatrixInverse);
+        //console.log('inverse camera point:', inversePoint);
+        inBox = AABB.containsPoint(inversePoint);
+    }
+
+    theBox.material.color = inBox ? colorRed : colorGreen;
+    
+};
+
+export {checkCollisionSpheres, checkIfInBox, setupHelpersForCheckIfInBox};
