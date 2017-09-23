@@ -30,8 +30,7 @@ const getCubePhong = (size={x:1, y:1, z:1}, position={x:0, y:0, z:0}) => {
     
     const geometry = new BoxGeometry( size.x, size.y, size.z );
     const material = new MeshPhongMaterial( { 
-        color: 0x00ff00, 
-        flatShading: true
+        color: 0x00ff00, specular: 30, flatShading: true
     } );
     const cube = new Mesh( geometry, material );
 

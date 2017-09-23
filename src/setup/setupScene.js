@@ -1,5 +1,5 @@
 
-import {Vector3, TextureLoader, SpotLight, LensFlare, AdditiveBlending, Color} from 'three';
+import {Vector3, TextureLoader, DirectionalLight, LensFlare, AdditiveBlending, Color, SpotLight, CameraHelper} from 'three';
 
 
 import {scene} from '../model/scene/scene';
@@ -73,29 +73,37 @@ const setupScene = () => {
 
     textureLoader.load('sun2.jpg', (texture)=>{
 
-        const sun = getSphere(new Vector3(850, 250, -350), 170, 24, 0xFFDD00, texture);
+        /* const sun = getSphere(new Vector3(2850, 700, -1350), 270, 12, 0xFFDD00);
         sun.name = 'Omega';
-        scene.add( sun );
+        scene.add( sun ); */
 
 
-        const spotLight = new SpotLight( 0xffffff, 1 );
-        spotLight.position.set(650, 220, -350);
-        spotLight.castShadow = true;
-        spotLight.shadow.mapSize.width = 1024;  
-        spotLight.shadow.mapSize.height = 1024; 
-        spotLight.shadow.camera.near = 2;       
-        spotLight.shadow.camera.far = 1000;
+        const directionalLight = new DirectionalLight( 0xffffaa, 1.5);
+        directionalLight.position.set(850, 220, -350);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.mapSize.width = 2048;  
+        directionalLight.shadow.mapSize.height = 2048; 
+        directionalLight.shadow.camera.near = 100;       
+        directionalLight.shadow.camera.far = 1000;
+        directionalLight.shadowCameraLeft = -600;
+        directionalLight.shadowCameraRight = 100;
+        directionalLight.shadowCameraTop = 20;
+        directionalLight.shadowCameraBottom = -20;
 
-        scene.add( spotLight );
+
+        scene.add( directionalLight );
+
+        /* const helper = new CameraHelper( directionalLight.shadow.camera );
+        scene.add( helper ); */
     });
 
     textureLoader.load('lensflare.png', (texture)=>{
 
         const flareColor = new Color( 0xffffff );
         /* flareColor.setHSL( h, s, l + 0.5 ); */
-        const lensFlare = new LensFlare( texture, 700, 0.0, AdditiveBlending, flareColor );
+        const lensFlare = new LensFlare( texture, 900, 0.0, AdditiveBlending, flareColor );
         
-        lensFlare.position.set(650, 220, -280);
+        lensFlare.position.set(650, 120, -280);
         scene.add( lensFlare );
     });
 
@@ -138,17 +146,17 @@ const setupScene = () => {
 
     const base = compoundObject();
     base.name = 'Base 1';
-    base.translateOnAxis(new Vector3(250,40,250), 1);
+    base.translateOnAxis(new Vector3(150,0,250), 1);
     scene.add(base);
 
-    /* const cube2 = getCubePhong({x:10, y:10, z:10}, {x:0, y:0, z:20});
+    const cube2 = getCubePhong({x:10, y:10, z:10}, {x:0, y:0, z:20});
     cube2.name = 'cube2';
     cube2.castShadow = true;
     scene.add(cube2);
     const cube3 = getCubePhong({x:10, y:10, z:10}, {x:-15, y:0, z:25});
     cube3.name = 'cube3';
     cube3.receiveShadow = true;
-    scene.add(cube3); */
+    scene.add(cube3);
 
     getParticleSystem(scene);
 };
