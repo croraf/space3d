@@ -7,7 +7,8 @@ import {scene} from '../model/scene/scene';
 import {sceneObjects} from '../model/scene/sceneObjects';
 
 import {getPipeline} from '../objects/complexObjects';
-import {getCube, getSphere, getParticleSystem, getPlanetRing} from '../objects/objectCreators';
+import {getCube, getSphere, getParticleSystem, getPlanetRing, getBase, getCubePhong} from '../objects/objectCreators';
+import {compoundObject} from '../objects/compoundObject';
 
 
 const setupTargets = () => {
@@ -79,6 +80,11 @@ const setupScene = () => {
 
         const spotLight = new SpotLight( 0xffffff, 1 );
         spotLight.position.set(650, 220, -350);
+        spotLight.castShadow = true;
+        spotLight.shadow.mapSize.width = 1024;  
+        spotLight.shadow.mapSize.height = 1024; 
+        spotLight.shadow.camera.near = 2;       
+        spotLight.shadow.camera.far = 1000;
 
         scene.add( spotLight );
     });
@@ -125,10 +131,24 @@ const setupScene = () => {
     scene.add( pipeline2 );
 
 
-    const cube1 = getCube({x:10, y:10, z:10}, {x:0, y:0, z:-20});
+    /* const cube1 = getCube({x:10, y:10, z:10}, {x:0, y:0, z:-20});
     cube1.name = 'box1';
     scene.add(cube1);
-    cube1.rotateY(0.5);
+    cube1.rotateY(0.5); */
+
+    const base = compoundObject();
+    base.name = 'Base 1';
+    base.translateOnAxis(new Vector3(250,40,250), 1);
+    scene.add(base);
+
+    /* const cube2 = getCubePhong({x:10, y:10, z:10}, {x:0, y:0, z:20});
+    cube2.name = 'cube2';
+    cube2.castShadow = true;
+    scene.add(cube2);
+    const cube3 = getCubePhong({x:10, y:10, z:10}, {x:-15, y:0, z:25});
+    cube3.name = 'cube3';
+    cube3.receiveShadow = true;
+    scene.add(cube3); */
 
     getParticleSystem(scene);
 };

@@ -15,8 +15,9 @@
   "dependencies": {
     "gl-matrix": "^2.4.0",
     "harp": "*",
+    "shader-particle-engine": "git://github.com/AndrewRayCode/ShaderParticleEngine.git#forever",
     "three": "^0.87.1",
-    "shader-particle-engine": "git://github.com/AndrewRayCode/ShaderParticleEngine.git#forever"
+    "three-js-csg": "^72.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

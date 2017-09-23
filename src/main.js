@@ -30,7 +30,7 @@ function init() {
     setupDashboard();
     setupHandlers();
     setupAudio();
-    setupHelpersForCheckIfInBox(scene.getObjectByName('box1'));
+    /* setupHelpersForCheckIfInBox(scene.getObjectByName('box1')); */
 
     /* const MyWorker = require("worker-loader!./webWorker.js");
     
@@ -54,7 +54,7 @@ function animate() {
     
     if (globalCounter % 16 === 0) {
         
-        checkIfInBox(camera.getWorldPosition(), scene.getObjectByName('box1'));
+        /* checkIfInBox(camera.getWorldPosition(), scene.getObjectByName('box1')); */
         
     }
 

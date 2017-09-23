@@ -3,6 +3,8 @@ import { BoxGeometry, MeshBasicMaterial, Mesh, LineBasicMaterial,
     TorusGeometry, DoubleSide,
     TubeGeometry, LineCurve3, MeshPhongMaterial, SpriteCanvasMaterial, Sprite, Color, TextureLoader, RingGeometry} from 'three';
 
+
+import * as THREE from 'three';
 import SPE from 'shader-particle-engine';
 
 const getCube = (size={x:1, y:1, z:1}, position={x:0, y:0, z:0}, wireframe=true, opacity=1) => {
@@ -15,6 +17,23 @@ const getCube = (size={x:1, y:1, z:1}, position={x:0, y:0, z:0}, wireframe=true,
         opacity: opacity 
     } );
     var cube = new Mesh( geometry, material );
+
+    cube.translateOnAxis(new Vector3(position.x, position.y, position.z), 1); 
+
+    /* cube.intersectable = true; */
+    
+    return cube;
+
+};
+
+const getCubePhong = (size={x:1, y:1, z:1}, position={x:0, y:0, z:0}) => {
+    
+    const geometry = new BoxGeometry( size.x, size.y, size.z );
+    const material = new MeshPhongMaterial( { 
+        color: 0x00ff00, 
+        flatShading: true
+    } );
+    const cube = new Mesh( geometry, material );
 
     cube.translateOnAxis(new Vector3(position.x, position.y, position.z), 1); 
 
@@ -95,6 +114,20 @@ const getTorus = (position=new Vector3(0,0,0)) => {
     torus.translateOnAxis(new Vector3(position.x, position.y, position.z), 1);
 
     return torus;
+};
+
+const getBase = (position) => {
+    const curve = new LineCurve3(new Vector3(0,0,0), new Vector3(0, 0, -30));
+    const geometry = new TubeGeometry( curve, 4, 10, 4 );
+    const material = new MeshPhongMaterial( { 
+        color: 0x0000cc, /* wireframe: true,  */specular: 0x555555, shininess: 20,/*  emissive: 'blue', emissiveIntensity: 0.2, */
+        side: DoubleSide, shading: true
+    } );
+    const base = new Mesh( geometry, material );
+    
+    /* torus.translateOnAxis(new Vector3(position.x, position.y, position.z), 1); */
+
+    return base;
 };
 
 const getPlanetRing = (position=new Vector3(0,0,0)) => {
@@ -179,4 +212,4 @@ const getParticleSystem = (scene) => {
     scene.add(wrapper);
 };
 
-export {getCube, getLine, getCircle, getSphere, getTorus, getTube, getParticleSystem, getPlanetRing};
+export {getCube, getLine, getCircle, getSphere, getTorus, getTube, getParticleSystem, getPlanetRing, getBase, getCubePhong};
