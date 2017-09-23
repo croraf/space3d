@@ -145,18 +145,18 @@ const setupScene = () => {
     cube1.rotateY(0.5); */
 
     const base = compoundObject();
-    base.name = 'Base 1';
-    base.translateOnAxis(new Vector3(150,0,250), 1);
+    base.name = 'Base Newton';
+    base.translateOnAxis(new Vector3(150,30,250), 1);
     scene.add(base);
 
-    const cube2 = getCubePhong({x:10, y:10, z:10}, {x:0, y:0, z:20});
+    /* const cube2 = getCubePhong({x:10, y:10, z:10}, {x:0, y:0, z:20});
     cube2.name = 'cube2';
     cube2.castShadow = true;
     scene.add(cube2);
     const cube3 = getCubePhong({x:10, y:10, z:10}, {x:-15, y:0, z:25});
     cube3.name = 'cube3';
     cube3.receiveShadow = true;
-    scene.add(cube3);
+    scene.add(cube3); */
 
     getParticleSystem(scene);
 };
